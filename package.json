@@ -1,0 +1,12 @@
+{
+  "name": "archive-mailpile-theme",
+  "version": "0.0.1",
+  "dependencies": {
+    "grunt": "latest",
+    "grunt-cli": "latest",
+    "grunt-contrib-concat": "latest",
+    "grunt-contrib-uglify": "latest",
+    "grunt-contrib-less": "latest",
+    "grunt-contrib-watch": "latest"
+  }
+}
