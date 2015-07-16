@@ -7,7 +7,7 @@
   </div>
   <div class="topbar-logo-name">
     <a href="{{ U('/in/all-mail/') }}" class='status-in-title' title="{{_("%(name)s's mailpile has %(size)s messages", name=name, size=mailpile_size)}}">
-      HT Emails
+      {{theme_settings().title}}
     </a>
   </div>
   <div class="topbar-actions">
@@ -30,7 +30,32 @@
         </li>
         {%- endfor -%}
         <li>
-          <a href="{{ U("/auth/logout/") }}" title="{{_("Logout")}}" alt="{{_("Logout")}}"><span class="link-icon icon-logout"></span></a>
+        </li>
+        <li class="nav-dropdown">
+          <a id="button-settings" href="#" data-target="#" class="nav-icon dropdown-toggle" data-toggle="dropdown" alt="{{_("About")}}" aria-haspopup="true" aria-expanded="false"><span class="link-icon icon-circle-info"></span></a>
+          <ul id="settings-menu" class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="button-settings">
+            {% for item in theme_settings().urls_primary   %}
+            <li role="presentation">
+              <a role="menuitem" tabindex="-1" href="{{item.url}}">
+                {% if item.icon %}<span class="{{item.icon}}"></span>{% else %} - &nbsp; {% endif %} {{item.name}}
+              </a>
+            </li>
+            {% endfor %}
+            <li role="presentation" class="divider"></li>
+            {% for item in theme_settings().urls_secondary %}
+            <li role="presentation">
+              <a role="menuitem" tabindex="-1" href="{{item.url}}">
+                {% if item.icon %}<span class="{{item.icon}}"></span>{% else %} - &nbsp; {% endif %} {{item.name}}
+              </a>
+            </li>
+            {% endfor %}
+            <li role="presentation" class="divider"></li>
+            <li role="presentation">
+              <a role="menuitem" tabindex="-1" href="{{ U("/auth/logout/") }}">
+                <span class="icon-logout"></span> {{_("Logout")}}
+              </a>
+            </li>
+          </ul>
         </li>
       </ul>
     </nav>
