@@ -192,18 +192,15 @@
 
     // Animate
     transition-duration: 0.2s;
+
+    border: 0px;
 	}
 
 	.button-colors(@color, @text-shadow, @border-color, @background) {
 
 		color: @color !important;
 		text-shadow: @text-shadow;
-
-		border: 1px solid @border-color;
-		border-radius: 4px;
-
     background: @background;
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 0px 0px rgba(0, 0, 0, 0.2);
   }
   
   .button-colors-hover(@border-color, @background) {
@@ -214,20 +211,19 @@
   .button-colors-active(@border-color, @background) {
     border-color: @border-color;
     background-color: @background;
-    box-shadow: inset 0 .17em .1em rgba(0, 0, 0, 0.3);
   }
 
   @btn-color: @white;
   @btn-font-family: @mailpile-text-font-family-semibold;
-  @btn-font-size: 16px;
+  @btn-font-size: 18px;
   @btn-font-weight: 300;
   @btn-margin: 0px;
-  @btn-padding: 5px 15px;
+  @btn-padding: 8px 15px;
 
   @btn-small-font-size: 12px;
   @btn-small-font-weight: bold;
   @btn-small-margin: @btn-margin;
-  @btn-small-padding: 5px 8px;
+  @btn-small-padding: 6px 10px;
 
 
 /* Button - Primary */

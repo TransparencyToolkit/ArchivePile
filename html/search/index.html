@@ -1,7 +1,7 @@
 {% extends "layouts/" + render_mode + ".html" %}
 {% block content %}
 {% if result %}
-  <div class="clearfix">
+  <div class="add-top clearfix">
     {% for tid in result.search_tag_ids %}
     <div class="content-detail left">
       <span class="{{result.data.tags[tid].icon}}"></span> {{result.data.tags[tid].name}} <!-- <a href="" class="remove">X</a> -->
