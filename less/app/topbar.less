@@ -21,10 +21,10 @@
     vertical-align: middle;
 	}
 
-	.topbar-logo #logo-icon {
+	.topbar-logo a img {
 		display: block;
     margin-left: 15px;
-    height: 21px;
+    height: 42px;
 	}
 
 	.topbar-logo-name {
@@ -40,6 +40,7 @@
     margin-left: 10px;
     font-family: @mp-topbar-logo-font-family;
     font-size: @mp-topbar-logo-font-size;
+    line-height: @mp-topbar-logo-font-size;
     color: @mp-topbar-logo-color;
 	}
 	
@@ -54,8 +55,9 @@
     width: 350px;
     height: 36px;
     float: left;
-    margin-top: 5px;
-    margin-left: 15px;
+    position: relative;
+    top: 5px;
+    left: 25px;
   }
 
   .form-search input {
@@ -115,7 +117,7 @@
 	.topbar-nav {
 		float: right;
 		position: relative;
-		top: 0px;
+		top: 3px;
 		right: 20px;
 	}
 
@@ -162,8 +164,8 @@
 	
 	.topbar-nav > ul > li > a span.link-icon { 
     display: block;
-    font-size: 32px;
-    line-height: 32px;
+    font-size: 30px;
+    line-height: 30px;
   }
 
   .topbar-nav > ul > li.navigation-on {

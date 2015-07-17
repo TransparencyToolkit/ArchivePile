@@ -1,12 +1,12 @@
 <div id="notification-bubbles"></div>
 <div id="header" class="topbar">
   <div class="topbar-logo">
-    <a href="{{ U('/profiles/') }}" class='status-in-title' title="{{_("%(name)s's mailpile has %(size)s messages", name=name, size=mailpile_size)}}">
+    <a href="{{ U('/profiles/') }}" title="{{theme_settings().title}}">
       <img src="/static/img/logo-57.png">
     </a>
   </div>
   <div class="topbar-logo-name">
-    <a href="{{ U('/in/all-mail/') }}" class='status-in-title' title="{{_("%(name)s's mailpile has %(size)s messages", name=name, size=mailpile_size)}}">
+    <a href="{{ U('/in/all-mail/') }}" title="{{theme_settings().title}}">
       {{theme_settings().title}}
     </a>
   </div>
@@ -32,7 +32,9 @@
         <li>
         </li>
         <li class="nav-dropdown">
-          <a id="button-settings" href="#" data-target="#" class="nav-icon dropdown-toggle" data-toggle="dropdown" alt="{{_("About")}}" aria-haspopup="true" aria-expanded="false"><span class="link-icon icon-circle-info"></span></a>
+          <a href="#" data-target="#" class="nav-icon dropdown-toggle" data-toggle="dropdown" alt="{{_("About")}}" aria-haspopup="true" aria-expanded="false">
+            <span class="link-icon icon-circle-info"></span>
+          </a>
           <ul id="settings-menu" class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="button-settings">
             {% for item in theme_settings().urls_primary   %}
             <li role="presentation">
