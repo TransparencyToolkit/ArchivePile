@@ -1,12 +1,19 @@
 <div id="thread-title" class="sub-navigation clearfix">
-  <div class="thread-draggable"></div>
   <div class="thread-details">
-    <h1 class="half-top remove-bottom">{{ nice_subject(result.data.metadata[result.thread_ids[-1]]) }}</h1>
-    <ul class="horizontal remove-top half-bottom">
-      <li><a href="#"><span class="icon-inbox"></span> {{ result.data.metadata|length }} {{_("Messages")}}</a></li>
-      <li><a class="show-thread-people" data-toggle="modal" data-target="#myModal" href="#"><span class="icon-user"></span> {{ result.data.addresses|length }} {{_("People")}}</a></li>
-      <!-- <li><a class="show-thread-security" href="#"><span class="icon-lock-open"></span> Partially Secure</a></li> -->
-      <li><a class="show-thread-tags" data-toggle="modal" data-target="#myModal" href="#"><span class="icon-tag"></span> {{_("Tags")}}</a></li>
+    <h1 class="half-top remove-bottom add-left">
+      {{ nice_subject(result.data.metadata[result.thread_ids[-1]]) }}
+    </h1>
+    <h4 class="right add-right"><span>{{ result.data.metadata|length }} {{_("Messages")}}</span></h4>
+    <ul class="horizontal half-top thread-title-tags add-left">
+      {% for tid in result.data.tags %}{% set tag = result.data.tags[tid] %}
+      {% if tag.type in ['tag'] %}
+      <li>
+        <a class="" href="{{tag.url}}">
+          <span class="{{tag.icon}}"></span> {{tag.name}}
+        </a>
+      </li>
+      {% endif %}
+      {% endfor %}
     </ul>
   </div>
 </div>

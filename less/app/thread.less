@@ -11,48 +11,34 @@
 
   #thread-title {
     display: table;
-    text-align: center;
-    padding: 0;
+    padding: 20px 0px;
   }
 
   #thread-title h1 {
     display: inline-block;
     font-family: @mailpile-text-font-family-bold;
-    font-size: 21px;
-    line-height: 24px;
-    color: rgb(77, 77, 77); //@grayDark;
+    font-size: @mp-thread-title-font-size;
+    line-height: (@mp-thread-title-font-size * 0.125);
+    color: @mp-thread-title-color;
   }
 
-  #thread-title ul li {
-    margin: 0 10px;
+  #thread-title h4 {
+    display: inline-block;
+    font-size: (@mp-thread-title-font-size * 0.75);
+    color: @mp-thread-details-color;
   }
 
-  #thread-title ul a {
-    color: @gray;
-    font-family: Helvetica, Arial, sans-serif;
-    font-size: 12px;
-    font-weight: normal;
+  ul.thread-title-tags li {
+    margin: 0px 10px;
+    color: @mp-thread-tags-color;
   }
 
-  #thread-title ul a:hover {
-    color: @grayDark;
+  ul.thread-title-tags li a {
+    color: @mp-thread-tags-color;
   }
 
-  #thread-title div.thread-draggable {
-    width: 12px;
-    height: 100%;
-    display: table-cell;
-    background: url('../img/draggable-pattern.png'), rgba(255,255,255,1);
-    opacity: 0.3;
-    filter:alpha(opacity=30);
-  }
-
-  #thread-title div.thread-draggable:hover {
-    cursor: move;
-  }
-  
-  #thread-title div.thread-details {
-    display: table-cell;
+  ul.thread-title-tags li a:hover {
+    color: @mp-thread-tags-color-hover;
   }
 
 
