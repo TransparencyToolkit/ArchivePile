@@ -1,7 +1,21 @@
 {% extends "layouts/" + render_mode + ".html" %}
 {% block content %}
 {% if result %}
-  <div class="hide" id="pile-newmessages-notification">New messages received! Click here (or press f) to refresh your view.</div>
+  <div class="clearfix">
+    {% for tid in result.search_tag_ids %}
+    <div class="content-detail left">
+      <span class="{{result.data.tags[tid].icon}}"></span> {{result.data.tags[tid].name}} <!-- <a href="" class="remove">X</a> -->
+    </div>  
+    {% endfor %}
+    <div class="content-detail right remove-right">
+      {% if result.stats.total > 1 %}
+        {{result.stats.start}} - {{result.stats.end}} {{_("of")}} {{result.stats.total}} {{_("Conversations")}}
+      {% elif result.stats.total == 1 %}
+        {{_("1 Conversation")}}
+      {% endif %}
+    </div>
+  </div>
+
   <table id="pile-results" class="{{ config.web.display_density }}">
   <tbody>
   {% for mid in result.thread_ids %}
@@ -10,7 +24,8 @@
   </tbody>
   </table>
   {% if result.stats.total > 0 %}
-  <div id="pile-bottom" class="clearfix">
+  <div class="clearfix">
+  <div id="pile-bottom" class="left">
     {% set searchterms = result.search_terms|join(' ') %}
     {% if result.stats.start > 1 %}
     {% set newstart = result.stats.start-result.stats.count %}
@@ -22,16 +37,10 @@
     {% set newend = newstart+result.stats.count-1 %}
     <a href="{{ config.sys.http_path }}/search/?context={{state.context|urlencode}}&start={{newstart}}&end={{newend}}" class="button-primary left" id="pile-next">{{_("Next")}}</a>
     {% endif %}
-    <h5 class="text-right">
-    {% if result.stats.total > 1 %}
-      {{result.stats.start}} - {{result.stats.end}} {{_("of")}} {{result.stats.total}} {{_("Conversations")}}
-    {% elif result.stats.total == 1 %}
-      {{_("1 Conversation")}}
-    {% endif %}
-    </h5>
   </div>
-  <div id="pile-speed" class="text-center clearfix">
-    <span class="icon-speed"></span>{{_("Searched <strong>%(number)s</strong> messages in <strong>%(elapsed)s</strong> seconds.", number=mailpile_size, elapsed=elapsed)}} {{_("Vroom!")}}
+  <div id="pile-speed" class="text-right right add-top">
+    <span class="icon-search"></span> {{_("Searched <strong>%(number)s</strong> messages", number=mailpile_size)}}
+  </div>
   </div>
   {% else %}
   <div id="pile-empty" class="clearfix add-bottom text-center">

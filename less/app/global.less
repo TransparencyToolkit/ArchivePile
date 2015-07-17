@@ -6,12 +6,30 @@
     margin-left: 225px;
     background: @mp-content-background;
     padding: @mp-content-padding;
+    overflow-y: scroll;
+    z-index: 5;
 	}
 
   #content-tools {
+    width: 100%;
     z-index: 10;
+    margin-bottom: 15px;
   }
 
+  div.content-detail {
+    display: inline-block;
+    background: @mp-content-detail-background;
+    margin: @mp-content-detail-margin;
+    padding: @mp-content-detail-padding;
+    font-family: @mp-topbar-detail-font-family;
+    font-size: @mp-topbar-detail-font-size;
+    line-height: @mp-topbar-detail-font-size;
+  }
+
+  div.content-detail a.remove {
+    color: @red;
+    font-size: @mp-topbar-detail-font-size * 1.05;
+  }
 
 /* Sub Navigation */
 
@@ -19,7 +37,7 @@
 		width: 100%;
 		min-height: 45px;
 		display: block;
-		background: @grayLight;
+		background: @mp-sub-nav-background;
 		border-bottom: 1px solid @gray;
 		box-sizing: border-box;
 	}
@@ -128,11 +146,7 @@
 /* Content View */
 
   #content-view {
-    position: relative;
-    top: 80px;
     min-height: 500px;
-    overflow-y: scroll;
-    z-index: 5;
     background: @mp-content-background;
   }
 
