@@ -30,14 +30,28 @@
     font-size: @mp-topbar-detail-font-size * 1.05;
   }
 
+
+/* Misc */
+
+  .detail-heading {
+    margin-top: 10px;
+    margin-bottom: 5px;
+    color: @mp-detail-heading-color;
+    text-transform: uppercase;
+    font-size: @mp-detail-heading-size;
+    font-family: @mp-detail-heading-font;
+    font-weight: normal;
+  }
+
+
 /* Sub Navigation */
 
 	.sub-navigation	{
 		width: 100%;
 		min-height: 45px;
 		display: block;
-		background: @mp-sub-nav-background;
-		border-bottom: 1px solid @gray;
+		background: @mp-tools-background;
+		border-bottom: @mp-tools-border-bottom;
 		box-sizing: border-box;
 	}
 
@@ -53,9 +67,9 @@
 	.sub-navigation > ul > li > a {
 		display: block;	
 		padding: 5px;
-		font-family: @text-font-family-bold;
+		font-family: @mp-tools-font;
 		font-weight: normal;		
-		color: @grayDark;
+		color: @mp-tools-color;
 		line-height: 14px;
 	}
 
@@ -75,7 +89,7 @@
 
 	.navigation-icon {
 		margin: 0;
-		color: @grayDark;
+		color: @mp-tools-color;
 		font-weight: normal;
 	}
 
@@ -91,10 +105,10 @@
     position: relative;
     top: 0px;
     left: 0px;
-	  background: @white;
-		border-bottom: 1px solid @gray;
+	  background: @mp-tools-background;
+		border-bottom: @mp-tools-border-bottom;
 		box-sizing: border-box;
-		color: @grayDark;
+		color: @mp-tools-color;
 		font-size: 14px;
 		line-height: 14px;
 	}
@@ -121,7 +135,7 @@
   }
 
 	.bulk-actions a {
-		color: @grayDark;
+		color: @mp-tools-color;
 	}
 
 	.bulk-actions a img {
