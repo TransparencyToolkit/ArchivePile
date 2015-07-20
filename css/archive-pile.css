@@ -1824,7 +1824,7 @@ table {
 /* #Body Styles
 ================================================== */
 body {
-  background:    #ffffff;
+  background:    #666666;
   font-size: 14px;
   font-weight: normal;
   font-family: "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -4289,12 +4289,14 @@ x:-o-prefocus,
   margin-left: 225px;
   background: #666666;
   padding: 25px;
-  overflow-y: scroll;
   z-index: 5;
 }
 #content-tools {
   width: 100%;
   z-index: 10;
+}
+#content-content {
+  padding-bottom: 25px;
 }
 div.content-detail {
   display: inline-block;
@@ -5593,14 +5595,15 @@ tr.modal-tag-picker-item td.checkbox {
 }
 #thread-title {
   display: table;
-  padding: 20px 0px;
+  padding: 10px 0px 20px 0px;
 }
 #thread-title h1 {
   display: inline-block;
   font-family: 'SourceSansPro-Bold', "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 24px;
-  line-height: 3px;
+  line-height: 27px;
   color: #000000;
+  vertical-align: text-top;
 }
 #thread-title h4 {
   display: inline-block;
