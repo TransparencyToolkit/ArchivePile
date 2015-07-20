@@ -1,44 +1,69 @@
 {% extends "layouts/" + render_mode + ".html" %}
 {% block title %}{{ nice_subject(result.data.metadata[result.thread_ids[-1]]) }}{% endblock %}
 {% block content %}
+
 {% if result %}
-{% set start_mid     = result.thread_ids[-1] %}
-{% set last_mid      = result.thread_ids.0 %}
-{% set start_subject = result.data.metadata[start_mid].subject %}
-{% set profiles      = mailpile('profiles').result %}
 
-{% set loop_history  = [] %}
-{% for mid in result.thread_ids|reverse %}
-  {% set metadata = result.data.metadata.get(mid) %}
-  {% set message = result.data.messages.get(mid) %}
-
-  {# Render the composer #}
-  {% if message and "editing_strings" in message %}
-    <!-- {{_("Composing mail disabled")}} -->
-
-  {# Render full message #}
-  {% elif message %}
-    {% include("partials/thread_message.html") %}{# Show: Message #}
-    {% set show_reply = (mid != last_mid) %}
-    {% do loop_history.append("display message") %}
-  {% else %}{# Just render snippet view #}
-    <div id="message-{{ mid }}" class="thread-snippet {% for tid in metadata.tag_tids %}{% if result.data.tags[tid].slug == "new" %}{{result.data.tags[tid].slug}}{% endif %}{% endfor %}" data-mid="{{ mid }}">
-      {% set from = metadata.from %}
-      {% include("partials/thread_metadata.html") %}
-      {% if metadata.crypto.encryption in ("lockedkey", "missingkey", "error", "mixed-lockedkey", "mixed-missingkey", "mixed-error") %}
-      <div class="thread-item-text"><em>{{_("Unable to see message preview")}}</em></div>
-      {% else %}
-      <div class="thread-item-text">{{ metadata.body.snippet }}</div>
-      {% endif %}
+  <div id="content-tools">
+    <div id="thread-title" class="sub-navigation clearfix">
+      <div class="thread-details">
+        <h1 class="half-top remove-bottom add-left">
+          {{ nice_subject(result.data.metadata[result.thread_ids[-1]]) }}
+        </h1>
+        <h4 class="right add-right"><span>{{ result.data.metadata|length }} {{_("Messages")}}</span></h4>
+        <ul class="horizontal half-top thread-title-tags add-left">
+          {% for tid in result.data.tags %}{% set tag = result.data.tags[tid] %}
+          {% if tag.type in ['tag'] %}
+          <li>
+            <a class="" href="{{tag.url}}">
+              <span class="{{tag.icon}}"></span> {{tag.name}}
+            </a>
+          </li>
+          {% endif %}
+          {% endfor %}
+        </ul>
+      </div>
     </div>
-    {% do loop_history.append("display snippet") %}
+  </div>
+  <div id="content-content">
+  
+  {% set start_mid     = result.thread_ids[-1] %}
+  {% set last_mid      = result.thread_ids.0 %}
+  {% set start_subject = result.data.metadata[start_mid].subject %}
+  {% set profiles      = mailpile('profiles').result %}
+  
+  {% set loop_history  = [] %}
+  {% for mid in result.thread_ids|reverse %}
+    {% set metadata = result.data.metadata.get(mid) %}
+    {% set message = result.data.messages.get(mid) %}
+  
+    {# Render the composer #}
+    {% if message and "editing_strings" in message %}
+      <!-- {{_("Composing mail disabled")}} -->
+  
+    {# Render full message #}
+    {% elif message %}
+      {% include("partials/thread_message.html") %}{# Show: Message #}
+      {% set show_reply = (mid != last_mid) %}
+      {% do loop_history.append("display message") %}
+    {% else %}{# Just render snippet view #}
+      <div id="message-{{ mid }}" class="thread-snippet {% for tid in metadata.tag_tids %}{% if result.data.tags[tid].slug == "new" %}{{result.data.tags[tid].slug}}{% endif %}{% endfor %}" data-mid="{{ mid }}">
+        {% set from = metadata.from %}
+        {% include("partials/thread_metadata.html") %}
+        {% if metadata.crypto.encryption in ("lockedkey", "missingkey", "error", "mixed-lockedkey", "mixed-missingkey", "mixed-error") %}
+        <div class="thread-item-text"><em>{{_("Unable to see message preview")}}</em></div>
+        {% else %}
+        <div class="thread-item-text">{{ metadata.body.snippet }}</div>
+        {% endif %}
+      </div>
+      {% do loop_history.append("display snippet") %}
+    {% endif %}
+  {% endfor %}{# End for loop #}
+  
+  {% if loop_history|last not in ("edit draft", "edit message") %}
+    {# Give the user the option to reply to the last message in the thread unless we already did! #}
+    <!-- {{_("Composing mail disabled")}} -->
   {% endif %}
-{% endfor %}{# End for loop #}
-
-{% if loop_history|last not in ("edit draft", "edit message") %}
-  {# Give the user the option to reply to the last message in the thread unless we already did! #}
-  <!-- {{_("Composing mail disabled")}} -->
-{% endif %}
 
 <script>
 $(document).ready(function() {

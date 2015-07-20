@@ -1,7 +1,9 @@
 {% extends "layouts/" + render_mode + ".html" %}
+
 {% block content %}
 {% if result %}
-  <div class="add-top clearfix">
+
+  <div class="clearfix">
     {% for tid in result.search_tag_ids %}
     <div class="content-detail left">
       <span class="{{result.data.tags[tid].icon}}"></span> {{result.data.tags[tid].name}} <!-- <a href="" class="remove">X</a> -->
@@ -16,47 +18,109 @@
     </div>
   </div>
 
-  <table id="pile-results" class="{{ config.web.display_density }}">
-  <tbody>
-  {% for mid in result.thread_ids %}
-    {% include("partials/search_item.html") %}
-  {% endfor %}
-  </tbody>
-  </table>
-  {% if result.stats.total > 0 %}
-  <div class="clearfix">
-  <div id="pile-bottom" class="left">
-    {% set searchterms = result.search_terms|join(' ') %}
-    {% if result.stats.start > 1 %}
-    {% set newstart = result.stats.start-result.stats.count %}
-    {% set newend = newstart+result.stats.count-1 %}
-    <a href="{{ config.sys.http_path }}/search/?context={{state.context|urlencode}}&start={{newstart}}&end={{newend}}" class="button-primary left" id="pile-previous">{{_("Previous")}}</a>
+  <div id="content-tools">
+    {%- set hard_coded_display_modes = safe('') -%}
+    {%- set search_actions_1 = '' -%}
+    {%- set search_actions_2 = '' -%}
+    {%- set search_actions_3 = '' -%}
+    {%- set search_actions_4 = '' -%}
+    {%- set hard_coded_selection_actions = safe(search_actions_1 + search_actions_2 + search_actions_3 + search_actions_4) -%}
+    {%- set search_terms_in = (result.search_terms or [''])[0][3:] %}
+
+    {%- if 'in:' == (result.search_terms or [''])[0][:3] %}
+    {%-   set saveClass = 'hide' %}
+    {%-   set editClass = '' %}
+    {%- else %}
+    {%-   set saveClass = '' %}
+    {%-   set editClass = 'hide' %}
+    {%- endif %}
+    {%- set activities = [] -%}
+    
+    {%- set display_refiners = [{
+        'name': 'display_all',
+        'icon': 'inbox',
+        'url': '/search/',
+        'url_args_remove': [['qr', ''], ['context', ''], ['start', ''], ['end', '']],
+        'text': _("All"),
+        'description': _("All messages")
+    },{
+        'name': 'unread',
+        'icon': 'new',
+        'url': '/search/',
+        'url_args_remove': [['qr', ''], ['context', ''], ['start', ''], ['end', '']],
+        'url_args_add': [['qr', 'is:unread']],
+        'text': _("Unread"),
+        'description': _("Unread messages")
+    },{
+        'name': 'has_attachment',
+        'icon': 'attachment',
+        'url': '/search/',
+        'url_args_remove': [['qr', ''], ['context', ''], ['start', ''], ['end', '']],
+        'url_args_add': [['qr', 'has:attachment']],
+        'text': _("Attachments"),
+        'description': _("Messages with attachments")
+    }]
+    -%}
+    {%- set display_modes = [{
+        'name': 'display_list',
+        'icon': 'list',
+        'url': '/search/',
+        'text': _("List"),
+        'description': _("List view")
+    }]
+    -%}
+
+    {% include('partials/tools_default.html') %}
+  </div>
+  <div id="content-view">
+
+    <table id="pile-results" class="{{ config.web.display_density }}">
+    <tbody>
+    {% for mid in result.thread_ids %}
+      {% include("partials/search_item.html") %}
+    {% endfor %}
+    </tbody>
+    </table>
+  
+    {% if result.stats.total > 0 %}
+    <div class="clearfix">
+    <div id="pile-bottom" class="left">
+      {% set searchterms = result.search_terms|join(' ') %}
+      {% if result.stats.start > 1 %}
+      {% set newstart = result.stats.start-result.stats.count %}
+      {% set newend = newstart+result.stats.count-1 %}
+      <a href="{{ config.sys.http_path }}/search/?context={{state.context|urlencode}}&start={{newstart}}&end={{newend}}" class="button-primary left" id="pile-previous">{{_("Previous")}}</a>
+      {% endif %}
+      {% if result.stats.start + result.stats.count < result.stats.total %}
+      {% set newstart = result.stats.start+result.stats.count %}
+      {% set newend = newstart+result.stats.count-1 %}
+      <a href="{{ config.sys.http_path }}/search/?context={{state.context|urlencode}}&start={{newstart}}&end={{newend}}" class="button-primary left" id="pile-next">{{_("Next")}}</a>
+      {% endif %}
+    </div>
+    <div id="pile-speed" class="text-right right add-top">
+      <span class="icon-search"></span> {{_("Searched <strong>%(number)s</strong> messages", number=mailpile_size)}}
+    </div>
+    </div>
+    {% else %}
+    <div id="pile-empty" class="clearfix add-bottom text-center">
+      <h3 class="add-top">{{_("No Results Found")}} :)</h3>
+      <p>{{_("It seems your Mailpile does not contain any messages, tags or contacts for the search")}}:</p>
+      <p id="pile-empty-search-terms">"{% for term in result.search_terms %}{{term}}{% if not loop.last %} {% endif %}{% endfor %}"</p>
+      <p>{{_("Here are some other options for you")}}:</p>
+      <p><a href="{{ config.sys.http_path }}/help/" id="pile-empty-search-terms-help" class="button-primary"><span class="icon-help"></span> {{_("Learn To Search Smarter")}}</a></p>
+      <p class="add-bottom"><a href="#" id="btn-pile-empty-search-web" class="button-primary"><span class="icon-search"></span> {{_("Search The Web For People")}}</a></p>
+    </div>
     {% endif %}
-    {% if result.stats.start + result.stats.count < result.stats.total %}
-    {% set newstart = result.stats.start+result.stats.count %}
-    {% set newend = newstart+result.stats.count-1 %}
-    <a href="{{ config.sys.http_path }}/search/?context={{state.context|urlencode}}&start={{newstart}}&end={{newend}}" class="button-primary left" id="pile-next">{{_("Next")}}</a>
-    {% endif %}
+
   </div>
-  <div id="pile-speed" class="text-right right add-top">
-    <span class="icon-search"></span> {{_("Searched <strong>%(number)s</strong> messages", number=mailpile_size)}}
-  </div>
-  </div>
-  {% else %}
-  <div id="pile-empty" class="clearfix add-bottom text-center">
-    <h3 class="add-top">{{_("No Results Found")}} :)</h3>
-    <p>{{_("It seems your Mailpile does not contain any messages, tags or contacts for the search")}}:</p>
-    <p id="pile-empty-search-terms">"{% for term in result.search_terms %}{{term}}{% if not loop.last %} {% endif %}{% endfor %}"</p>
-    <p>{{_("Here are some other options for you")}}:</p>
-    <p><a href="{{ config.sys.http_path }}/help/" id="pile-empty-search-terms-help" class="button-primary"><span class="icon-help"></span> {{_("Learn To Search Smarter")}}</a></p>
-    <p class="add-bottom"><a href="#" id="btn-pile-empty-search-web" class="button-primary"><span class="icon-search"></span> {{_("Search The Web For People")}}</a></p>
-  </div>
-  {% endif %}
+
+
 {% else %}
   <div class="add-top add-bottom text-center">
     <h2 class="add-top center">{{_("Hrm, We Could Not Find Anything")}}</h2>
   </div>
 {% endif %}
+
 <script>
 $(document).ready(function() {
   Mailpile.Search.init();

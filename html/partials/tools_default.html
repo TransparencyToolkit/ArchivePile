@@ -1,7 +1,8 @@
-{%- set activities = (activities or []) + get_ui_elements('activities', state) -%}
-{%- set display_refiners = (display_refiners or []) + get_ui_elements('display_refiners', state) -%}
-{%- set display_modes = (display_modes or []) + get_ui_elements('display_modes', state) -%}
+{%- set activities        = (activities or []) + get_ui_elements('activities', state) -%}
+{%- set display_refiners  = (display_refiners or []) + get_ui_elements('display_refiners', state) -%}
+{%- set display_modes     = (display_modes or []) + get_ui_elements('display_modes', state) -%}
 {%- set selection_actions = (selection_actions or []) + get_ui_elements('selection_actions', state) -%}
+
 {%- if selection_initial_prompt %}
   {%- set have_initial_prompt = True %}
 {%- else %}
