@@ -8,9 +8,11 @@
     bottom: 0;
     box-sizing: border-box;
     margin: 0;
-    padding: 5px 0 45px;
+    padding: 0;
+    padding-top: 5px;
     border-spacing: 0px;
     overflow-y: auto;
+    overflow-x: hidden;
     overflow-x: hidden;
     z-index: 10;
   }
@@ -46,6 +48,7 @@
     padding: 6px 5px;
     vertical-align: middle;
     text-align: left;
+    white-space: nowrap;
     transition-duration: 0.2s;
   }
 
@@ -81,9 +84,12 @@
 
   #sidebar a.sidebar-tag span.name {
     display: inline-block;
-    max-width: 132px;
+    max-width: 140px;
     padding-left: 5px;
     white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
 	}
 
   #sidebar a.sidebar-tag span.icon,
