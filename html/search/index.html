@@ -7,7 +7,7 @@
     {% for t in result.search_terms %}
     <div class="content-detail left">
       {% set tag_check = t.split('in:') %}
-      {% if tag_check|length > 1 %}
+      {% if tag_check|length > 1 and result.data %}
         {% for tid, tag in result.data.tags.iteritems() if tag.slug == tag_check[1] %}
         <span class="{{tag.icon}}"></span> {{tag.name}}
         {% endfor %}
