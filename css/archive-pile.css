@@ -4415,16 +4415,23 @@ div.content-detail a.remove {
   background: #666666;
 }
 div.content-normal {
-  margin: 25px 20px;
+  background: #ffffff;
+  padding: 25px;
 }
 div.content-small {
   max-width: 400px;
+  background: #ffffff;
+  padding: 25px;
 }
 div.content-medium {
   max-width: 600px;
+  background: #ffffff;
+  padding: 25px;
 }
 div.content-large {
   max-width: 800px;
+  background: #ffffff;
+  padding: 25px;
 }
 /* Debug */
 #debug {
