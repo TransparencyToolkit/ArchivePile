@@ -4,29 +4,28 @@
 
 {% if result %}
 
-  <div id="content-tools">
-    <div id="thread-count">
-      <span class="icon-inbox"></span> {{ result.data.metadata|length }} {{_("Emails")}}
-    </div>
-    <div id="thread-title" class="sub-navigation clearfix">
-      <div class="thread-details">
-        <h1 class="half-top remove-bottom add-left">
-          {{ nice_subject(result.data.metadata[result.thread_ids[-1]]) }}
-        </h1>
-        <ul class="horizontal half-top thread-title-tags add-left">
-          {% for tid in result.data.tags %}{% set tag = result.data.tags[tid] %}
-          {% if tag.type in ['tag'] %}
-          <li>
-            <a class="" href="{{tag.url}}">
-              <span class="{{tag.icon}}"></span> {{tag.name}}
-            </a>
-          </li>
-          {% endif %}
-          {% endfor %}
-        </ul>
-      </div>
+  <div id="thread-count">
+    <span class="icon-inbox"></span> {{ result.data.metadata|length }} {{_("Emails")}}
+  </div>
+  <div id="thread-title" class="sub-navigation clearfix">
+    <div class="thread-details">
+      <h1 class="half-top remove-bottom add-left">
+        {{ nice_subject(result.data.metadata[result.thread_ids[-1]]) }}
+      </h1>
+      <ul class="horizontal half-top thread-title-tags add-left">
+        {% for tid in result.data.tags %}{% set tag = result.data.tags[tid] %}
+        {% if tag.type in ['tag'] %}
+        <li>
+          <a class="" href="{{tag.url}}">
+            <span class="{{tag.icon}}"></span> {{tag.name}}
+          </a>
+        </li>
+        {% endif %}
+        {% endfor %}
+      </ul>
     </div>
   </div>
+
 
   <div id="content-content">
   

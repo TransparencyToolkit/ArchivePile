@@ -19,6 +19,8 @@
   #thread-title {
     display: table;
     padding: 10px 0px 20px 0px;
+    border-bottom: @mp-thread-border-bottom;
+    text-align: @mp-thread-title-text-align;
   }
 
   #thread-title h1 {
@@ -171,7 +173,7 @@
     margin-top: 0px;
     margin-bottom: 5px;
     padding-top: 0px;
-    color: @grayDark;
+    color: @mp-thread-contact-name-color;
     font-size: 16px;
     font-weight: bold;
     line-height: 16px;
@@ -284,6 +286,7 @@
     display: table-cell;
     vertical-align: middle;
     padding-right: 5px;
+    color: @mp-thread-contact-name-color;
   }
 
   .thread-item-metadata-contact a span {
