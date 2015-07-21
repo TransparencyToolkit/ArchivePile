@@ -28,11 +28,9 @@
     padding-bottom: 10px;
 	}
 
-	#pile-results tr a        { font-size: 14px; line-height: 14px; font-weight: normal; color: inherit; }
-	#pile-results tr.in_new a { font-weight: bold;}
+	#pile-results tr a { font-size: 14px; line-height: 14px; font-weight: normal; color: inherit; }
   #pile-results td span.pile-message-tag { font-weight: bold; margin-right: 5px; cursor: pointer; }
-
-  #pile-results span.conversation-count {
+  #pile-results td span.conversation-count {
     text-align: center;
     vertical-align: middle;
     position: relative;
@@ -48,13 +46,15 @@
     line-height: 11px;
   }
 
-	#pile-results td.from .icon-reply,
-	#pile-results td.from .icon-forward,
-  #pile-results td.from .icon-compose {
-    position: relative;
-    top: 0px;
-    left: 4px;
-    color: @grayMid;
+  #pile-results .icon-lock-closed {
+    font-size: @mp-search-subject-font-size * .80;
+  }
+
+	#pile-results .icon-reply,
+	#pile-results .icon-forward,
+  #pile-results .icon-compose {
+    color: @mp-search-from-color;
+    font-size: @mp-search-subject-font-size * .85;
   }
 
 	#pile-results td.subject {
@@ -83,7 +83,6 @@
     color: @mp-search-from-color;
     font-weight: bold;
   }
-
 
   #pile-results td.checkbox {
     width: 45px;

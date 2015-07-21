@@ -4,10 +4,18 @@
 {% if result %}
 
   <div class="clearfix">
-    {% for tid in result.search_tag_ids %}
+    {% for t in result.search_terms %}
     <div class="content-detail left">
-      <span class="{{result.data.tags[tid].icon}}"></span> {{result.data.tags[tid].name}} <!-- <a href="" class="remove">X</a> -->
-    </div>  
+      {% set tag_check = t.split('in:') %}
+      {% if tag_check|length > 1 %}
+        {% for tid, tag in result.data.tags.iteritems() if tag.slug == tag_check[1] %}
+        <span class="{{tag.icon}}"></span> {{tag.name}}
+        {% endfor %}
+      {% else %}
+        {{t}}
+      {% endif %}
+      <a href="" class="remove">X</a>
+    </div>
     {% endfor %}
     <div class="content-detail right remove-right">
       {% if result.stats.total > 1 %}
