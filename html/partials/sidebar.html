@@ -47,20 +47,22 @@
 {%- endmacro %}
 
 <div id="sidebar" class="{{ config.web.display_density }}">
-  <nav>
-    <div class="detail-heading">Select Filter Categories</div>
-    <ul id="sidebar-priority" class="sidebar-sortable">
-      {%- for tag in mailpile("tags", "mode=tree", "display=priority").result.tags -%}
-      {{ render_sidebar_tag(tag) }}
-      {%- endfor -%}
-    </ul>
-    <div class="detail-heading">Unorganized Terms</div>
-    <ul id="sidebar-tag" class="sidebar-sortable">
-      {%- for tag in mailpile("tags", "mode=tree", "display=tag").result.tags -%}
-      {{ render_sidebar_tag(tag) }}
-      {%- endfor -%}
-    </ul>
-  </nav>
+  <div id="sidebar-lists">
+    <nav>
+      <div class="detail-heading">Select Filter Categories</div>
+      <ul id="sidebar-priority" class="sidebar-sortable">
+        {%- for tag in mailpile("tags", "mode=tree", "display=priority").result.tags -%}
+        {{ render_sidebar_tag(tag) }}
+        {%- endfor -%}
+      </ul>
+      <div class="detail-heading">Unorganized Terms</div>
+      <ul id="sidebar-tag" class="sidebar-sortable">
+        {%- for tag in mailpile("tags", "mode=tree", "display=tag").result.tags -%}
+        {{ render_sidebar_tag(tag) }}
+        {%- endfor -%}
+      </ul>
+    </nav>
+  </div>
 </div>
 
 <script id="template-sidebar-item" type="text/template">

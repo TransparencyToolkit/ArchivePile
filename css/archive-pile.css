@@ -4288,12 +4288,14 @@ x:-o-prefocus,
   margin-top: 62px;
   margin-left: 225px;
   background: #666666;
-  padding: 25px;
+  padding: 20px 25px 25px 25px;
   z-index: 5;
 }
 #content-tools {
   width: 100%;
   z-index: 10;
+  margin: 0 0 20px 0;
+  border-bottom: 0px;
 }
 #content-content {
   padding-bottom: 25px;
@@ -4301,7 +4303,7 @@ x:-o-prefocus,
 div.content-detail {
   display: inline-block;
   background: #ffffff;
-  margin: 0px 25px 15px 0px;
+  margin: 0px 25px 20px 0px;
   padding: 10px 15px;
   font-family: 'SourceSansPro-Bold';
   font-size: 16px;
@@ -4327,7 +4329,6 @@ div.content-detail a.remove {
   min-height: 45px;
   display: block;
   background: #ffffff;
-  border-bottom: 1px solid #000000;
   box-sizing: border-box;
 }
 .sub-navigation > ul {
@@ -4371,7 +4372,6 @@ div.content-detail a.remove {
   top: 0px;
   left: 0px;
   background: #ffffff;
-  border-bottom: 1px solid #000000;
   box-sizing: border-box;
   color: #000000;
   font-size: 14px;
@@ -4996,7 +4996,8 @@ div.notification-bubble a.notification-close:hover {
   bottom: 0;
   box-sizing: border-box;
   margin: 0;
-  padding: 5px 0 45px;
+  padding: 0;
+  padding-top: 5px;
   border-spacing: 0px;
   overflow-y: auto;
   overflow-x: hidden;
@@ -5047,6 +5048,7 @@ div.notification-bubble a.notification-close:hover {
   padding: 6px 5px;
   vertical-align: middle;
   text-align: left;
+  white-space: nowrap;
   transition-duration: 0.2s;
 }
 #sidebar.cozy a.sidebar-tag {
@@ -5088,9 +5090,11 @@ div.notification-bubble a.notification-close:hover {
 }
 #sidebar a.sidebar-tag span.name {
   display: inline-block;
-  max-width: 132px;
+  max-width: 140px;
   padding-left: 5px;
   white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 #sidebar a.sidebar-tag span.icon,
 #sidebar a.sidebar-tag span.name {
@@ -5476,15 +5480,12 @@ tr.modal-tag-picker-item td.checkbox {
   font-weight: normal;
   color: inherit;
 }
-#pile-results tr.in_new a {
-  font-weight: bold;
-}
 #pile-results td span.pile-message-tag {
   font-weight: bold;
   margin-right: 5px;
   cursor: pointer;
 }
-#pile-results span.conversation-count {
+#pile-results td span.conversation-count {
   text-align: center;
   vertical-align: middle;
   position: relative;
@@ -5499,13 +5500,14 @@ tr.modal-tag-picker-item td.checkbox {
   font-weight: bold;
   line-height: 11px;
 }
-#pile-results td.from .icon-reply,
-#pile-results td.from .icon-forward,
-#pile-results td.from .icon-compose {
-  position: relative;
-  top: 0px;
-  left: 4px;
-  color: #cfcfcf;
+#pile-results .icon-lock-closed {
+  font-size: 14.4px;
+}
+#pile-results .icon-reply,
+#pile-results .icon-forward,
+#pile-results .icon-compose {
+  color: #8f8f8f;
+  font-size: 15.3px;
 }
 #pile-results td.subject {
   min-width: 374px;
@@ -5596,6 +5598,8 @@ tr.modal-tag-picker-item td.checkbox {
 #thread-title {
   display: table;
   padding: 10px 0px 20px 0px;
+  border-bottom: 1px solid #8f8f8f;
+  text-align: left;
 }
 #thread-title h1 {
   display: inline-block;
@@ -5715,7 +5719,7 @@ ul.thread-title-tags li a:hover {
   margin-top: 0px;
   margin-bottom: 5px;
   padding-top: 0px;
-  color: #666666;
+  color: #000000;
   font-size: 16px;
   font-weight: bold;
   line-height: 16px;
@@ -5810,6 +5814,7 @@ ul.thread-title-tags li a:hover {
   display: table-cell;
   vertical-align: middle;
   padding-right: 5px;
+  color: #000000;
 }
 .thread-item-metadata-contact a span {
   font-size: 11px;
@@ -6140,6 +6145,7 @@ a.modal-tag-color-option:hover {
     display: none;
   }
   #content {
+    min-width: 767px;
     margin-left: 0px;
   }
   /* Pile */
@@ -6168,6 +6174,7 @@ a.modal-tag-color-option:hover {
     display: none;
   }
   #content {
+    min-width: 320px;
     margin-left: 0px;
   }
   /* Pile */
