@@ -10,16 +10,16 @@
       "url": "/help/"
   }],
   "urls_secondary": [{   
-      "name": "About",
-      "icon": "",
-      "url": "https://transparencytoolkit.org/projects/hacking-team-emails/"
-    },{
       "name": "Dataset",
-      "icon": "",
+      "icon": "icon-code",
       "url": "https://ht.transparencytoolkit.org"
   },{
+      "name": "About HT Emails",
+      "icon": "icon-links",
+      "url": "https://transparencytoolkit.org/projects/hacking-team-emails/"
+  },{
       "name": "Transparency Toolkit",
-      "icon": "icon-code",
+      "icon": "icon-links",
       "url": "https://transparencytoolkit.org"  
   }],
   "navigation_link": "#4d4d4d",
