@@ -9,8 +9,9 @@
     list-style: none;
   }
 
-  #pile-results li.result {
-    background: @white; margin-bottom: @mp-search-item-margin-bottom;
+  #pile-results li.result,
+  #pile-results li.result-on {
+    margin-bottom: @mp-search-item-margin-bottom;
 		border-bottom: 1px solid @grayMid;
 		box-sizing: padding-box;
 		font-family: "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -19,6 +20,7 @@
     padding: @mp-search-item-spacing;
   }
 
+  #pile-results li.result          { background: @white; }
 	#pile-results li.result:hover    { background: @grayLighter; }
 	#pile-results li.result-hover    { background: @grayLighter; }
 	#pile-results li.result-on       { background: @colorSelect }
@@ -49,35 +51,36 @@
 
 /* Pile - Icons */
   
-  #pile-results span.icon-lock-closed,
-	#pile-results span.icon-new,
-	#pile-results span.icon-reply,
-	#pile-results span.icon-forward,
-  #pile-results span.icon-compose {
+  #pile-results a.subject span.icon-lock-closed,
+	#pile-results a.subject span.icon-new,
+	#pile-results a.subject span.icon-reply,
+	#pile-results a.subject span.icon-forward,
+  #pile-results a.subject span.icon-compose {
     color: @mp-search-from-color;
     font-size: @mp-search-subject-font-size * .85;
   }
 
-  #pile-results span.icon-lock-closed.decrypted,
-  #pile-results span.icon-lock-closed.mixed-decrypted,
-  #pile-results span.icon-lock-closed.lockedkey,
-  #pile-results span.icon-lock-closed.mixed-lockedkey {
+  #pile-results a.subject span.icon-lock-closed.decrypted,
+  #pile-results a.subject span.icon-lock-closed.mixed-decrypted,
+  #pile-results a.subject span.icon-lock-closed.lockedkey,
+  #pile-results a.subject span.icon-lock-closed.mixed-lockedkey {
     color: @green;
   }
 
-  #pile-results span.icon-lock-closed.error,
-  #pile-results span.icon-lock-closed.mixed-error,
-  #pile-results span.icon-lock-closed.missingkey,
-  #pile-results span.icon-lock-closed.mixed-missingkey {
+  #pile-results a.subject span.icon-lock-closed.error,
+  #pile-results a.subject span.icon-lock-closed.mixed-error,
+  #pile-results a.subject span.icon-lock-closed.missingkey,
+  #pile-results a.subject span.icon-lock-closed.mixed-missingkey {
     color: @red;
   }
 
-  #pile-results li.result span.icon-new {
-    color: @blue;
+  #pile-results li.result span.icon-new,
+  #pile-results li.result-on span.icon-new {
     display: none;
   }
 
   #pile-results li.result.in_new span.icon-new {
+    color: @blue;
     display: inline-block;
   }
 
