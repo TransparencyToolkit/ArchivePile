@@ -1,18 +1,19 @@
 /* Navigation */
 
   .navigation-on {
-		background: lighten(@gray, 15%);
+		background: @mp-navigation-on-background;
 		border-radius: @base-border-radius;    
   }
 
 	.navigation-on > a {
 		cursor: default;
-		color: @grayDark;
+		color: @mp-navigation-on-color;
 	}
 
 	.navigation-on > a:hover,
-  .navigation-on > a:hover > span {
-    color: @grayDark;
+  .navigation-on > a:hover > span.navigation-icon, 
+  .navigation-on > a:hover > span.navigation-text {
+    color: @mp-navigation-on-color;
   }
 
 
