@@ -97,7 +97,7 @@ Mailpile.bulk_action_unread = function() {
 
 Mailpile.bulk_action_select_target = function() {
   var target = this.search_target;
-  var mid = $('#pile-results tr').eq(target).data('mid');
+  var mid = $('#pile-results li').eq(target).data('mid');
   Mailpile.bulk_cache_add('messages_cache', mid);
   $('#pile-message-' + mid).addClass('result-on').find('input[type=checkbox]').prop('checked', true);
   this.bulk_actions_update_ui();
@@ -107,7 +107,7 @@ Mailpile.bulk_action_select_target = function() {
 
 Mailpile.bulk_action_deselect_target = function() {
   var target = this.search_target;
-  var mid = $('#pile-results tr').eq(target).data('mid');
+  var mid = $('#pile-results li').eq(target).data('mid');
   Mailpile.bulk_cache_remove('messages_cache', mid);
   $('#pile-message-' + mid).removeClass('result-on').find('input[type=checkbox]').prop('checked', false);
   this.bulk_actions_update_ui();
@@ -119,7 +119,7 @@ Mailpile.bulk_action_toggle_target = function() {
   var target = this.search_target;
   // No Target
   if (target === 'none') {
-    var mid = $('#pile-results tr').eq(0).data('mid');
+    var mid = $('#pile-results li').eq(0).data('mid');
     if ($('#pile-message-' + mid).find('input[type=checkbox]').is(':checked')) {
       Mailpile.pile_action_unselect($('#pile-message-' + mid));
     } else {
@@ -128,7 +128,7 @@ Mailpile.bulk_action_toggle_target = function() {
   }
   // Has Target
   else {
-    var mid = $('#pile-results tr').eq(target).data('mid');
+    var mid = $('#pile-results li').eq(target).data('mid');
     if ($('#pile-message-' + mid).find('input[type=checkbox]').is(':checked')) {
       Mailpile.bulk_action_deselect_target();
     } else {
@@ -140,9 +140,9 @@ Mailpile.bulk_action_toggle_target = function() {
 
 
 Mailpile.bulk_action_select_all = function() {
-  var checkboxes = $('#pile-results input[type=checkbox]');
+  var checkboxes = $('#pile-results').find('input[type=checkbox]');
   $.each(checkboxes, function() {
-    Mailpile.pile_action_select($(this).parent().parent());
+    Mailpile.pile_action_select($('#pile-message-' + $(this).data('mid')));
   });
   $("#pile-select-all-action").attr('checked','checked');
   Mailpile.bulk_actions_update_ui();
@@ -150,9 +150,9 @@ Mailpile.bulk_action_select_all = function() {
 
 
 Mailpile.bulk_action_select_none = function() {
-  var checkboxes = $('#pile-results input[type=checkbox]');
+  var checkboxes = $('#pile-results').find('input[type=checkbox]');
   $.each(checkboxes, function() {
-    Mailpile.pile_action_unselect($(this).parent().parent());
+    Mailpile.pile_action_unselect($('#pile-message-' + $(this).data('mid')));
   });
   $("#pile-select-all-action").removeAttr('checked');
   Mailpile.bulk_cache_remove('messages_cache', '!all');
@@ -185,7 +185,7 @@ Mailpile.bulk_action_select_between = function() {
 
 
 Mailpile.bulk_action_selection_up = function() {
-  var checkboxes = $('#pile-results input[type=checkbox]');
+  var checkboxes = $('#pile-results').find('input[type=checkbox]');
   if (this['messages_cache'].length == 0) {
     Mailpile.pile_action_select($(checkboxes[checkboxes.length-1]).parent().parent());
     return;
@@ -201,7 +201,7 @@ Mailpile.bulk_action_selection_up = function() {
 
 
 Mailpile.bulk_action_selection_down = function() {
-  var checkboxes = $('#pile-results input[type=checkbox]');
+  var checkboxes = $('#pile-results').find('input[type=checkbox]');
   if (this['messages_cache'].length == 0) {
     Mailpile.pile_action_select($(checkboxes[0]).parent().parent());
     return;
@@ -226,7 +226,7 @@ Mailpile.open_selected_thread = function() {
   }
   else if (Mailpile.search_target !== 'none') {
     var target = this['search_target'];
-    var mid = $('#pile-results tr').eq(target).data('mid');
+    var mid = $('#pile-results li').eq(target).data('mid');
     window.location.href = Mailpile.urls.message_sent + mid + '/';
   }
 };

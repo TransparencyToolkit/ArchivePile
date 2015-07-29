@@ -1,17 +1,17 @@
 /* Search - Bulk Select / Unselect All */
 $(document).on('click', '#pile-select-all-action', function(e) {
-  var checkboxes = $('#pile-results input[type=checkbox]');
+  var checkboxes = $('#pile-results').find('input[type=checkbox]');
   if ($(this).attr('checked') === undefined) {
     $(this).attr('checked','checked');
-    $.each(checkboxes, function() {      
-      Mailpile.pile_action_select($(this).parent().parent());
+    $.each(checkboxes, function() {
+      Mailpile.pile_action_select($('#pile-message-' + $(this).data('mid')));
     });
   }
   else {
     $(this).removeAttr('checked');
     Mailpile.bulk_cache_remove('messages_cache', '!all');
     $.each(checkboxes, function() {
-      Mailpile.pile_action_unselect($(this).parent().parent());
+      Mailpile.pile_action_unselect($('#pile-message-' + $(this).data('mid')));
     });
   }
 });
