@@ -24,9 +24,6 @@ Mailpile.UI.Modals.TagAddProcess = function(location) {
       // Add To Model
       Mailpile.instance.tags.push(result.result.added[0]);
 
-      // Update UI things
-      Mailpile.UI.Sidebar.Draggable('a.sidebar-tag');
-      Mailpile.UI.Sidebar.Droppable('li.sidebar-tags-draggable', 'td.draggable');
       // FIXME: these drag & drops probably break on non search views
       $('#modal-full').modal('hide');
 

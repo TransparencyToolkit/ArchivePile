@@ -40,11 +40,6 @@ Mailpile.UI.init = function() {
 
   }, 1000);
 
-
-  /* Drag & Drop */
-  Mailpile.UI.Sidebar.Draggable('a.sidebar-tag');
-
-
   /* Tooltips */
   Mailpile.UI.Tooltips.TopbarNav();
   Mailpile.UI.Tooltips.BulkActions();
