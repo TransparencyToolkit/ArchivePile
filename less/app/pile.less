@@ -2,35 +2,35 @@
 
 	#pile-results {
 	  width: 100%;
-	  min-width: 800px;
-    border: 0px;
+	  min-width: 750px;
+    box-sizing: content-box;
+    display: inline-block;
+    margin: 0px;
+    list-style: none;
   }
 
-  #pile-results tr.result          { background: @white; }
-	#pile-results tr.result:hover    { background: @grayLighter; }
-	#pile-results tr.result-hover    { background: @grayLighter; }
-	#pile-results tr.result-on       { background: @colorSelect }
-	#pile-results tr.result-on:hover { background: @colorSelectHover }
-	
-	#pile-results td {
-    vertical-align: middle;
-		border-spacing: 0px;
-    border-top: 0px;
-    border-right: 0px;
+  #pile-results li.result {
+    background: @white; margin-bottom: @mp-search-item-margin-bottom;
 		border-bottom: 1px solid @grayMid;
-    border-left: 0px;
 		box-sizing: padding-box;
 		font-family: "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
 		font-size: 14px;
 		line-height: 14px;
-    padding-left: 0px;
-    padding-right: 0px;
-    padding-bottom: 10px;
-	}
+    padding: @mp-search-item-spacing;
+  }
 
-	#pile-results tr a { font-size: 14px; line-height: 14px; font-weight: normal; color: inherit; }
-  #pile-results td span.pile-message-tag { font-weight: bold; margin-right: 5px; cursor: pointer; }
-  #pile-results td span.conversation-count {
+	#pile-results li.result:hover    { background: @grayLighter; }
+	#pile-results li.result-hover    { background: @grayLighter; }
+	#pile-results li.result-on       { background: @colorSelect }
+	#pile-results li.result-on:hover { background: @colorSelectHover }
+
+  #pile-results span.pile-message-tag {
+    font-weight: bold;
+    margin-right: 5px;
+    cursor: pointer;
+  }
+
+  #pile-results span.conversation-count {
     text-align: center;
     vertical-align: middle;
     position: relative;
@@ -46,32 +46,57 @@
     line-height: 11px;
   }
 
-  #pile-results .icon-lock-closed {
-    font-size: @mp-search-subject-font-size * .80;
-  }
 
-	#pile-results .icon-reply,
-	#pile-results .icon-forward,
-  #pile-results .icon-compose {
+/* Pile - Icons */
+  
+  #pile-results span.icon-lock-closed,
+	#pile-results span.icon-new,
+	#pile-results span.icon-reply,
+	#pile-results span.icon-forward,
+  #pile-results span.icon-compose {
     color: @mp-search-from-color;
     font-size: @mp-search-subject-font-size * .85;
   }
 
-	#pile-results td.subject {
-		min-width: 374px;
-		overflow: hidden;
+  #pile-results span.icon-lock-closed.decrypted,
+  #pile-results span.icon-lock-closed.mixed-decrypted,
+  #pile-results span.icon-lock-closed.lockedkey,
+  #pile-results span.icon-lock-closed.mixed-lockedkey {
+    color: @green;
+  }
+
+  #pile-results span.icon-lock-closed.error,
+  #pile-results span.icon-lock-closed.mixed-error,
+  #pile-results span.icon-lock-closed.missingkey,
+  #pile-results span.icon-lock-closed.mixed-missingkey {
+    color: @red;
+  }
+
+  #pile-results li.result span.icon-new {
+    color: @blue;
+    display: none;
+  }
+
+  #pile-results li.result.in_new span.icon-new {
+    display: inline-block;
+  }
+
+
+/* Pile - Subject & Text */
+	
+	#pile-results a.subject {
+    min-width: 374px;
+    max-width: 500px;
+    text-overflow: ellipsis;
 		word-wrap: normal;
 		word-break: normal;
     white-space: nowrap;
-    padding-left: 15px;
-	}
-	
-	#pile-results td.subject a.item-subject {
-    display: inline-block;
     margin-bottom: 8px;
+    color: @mp-search-subject-color;
     font-size: @mp-search-subject-font-size;
     font-family: @mp-search-subject-font;
     line-height: @mp-search-subject-font-size * 1.25;
+    vertical-align: text-top;
 	}
 
   #pile-results div.from,
@@ -79,14 +104,17 @@
     color: @mp-search-from-color;
   }
 
-  #pile-results div.from a {
+  #pile-results div.from a.from {
     color: @mp-search-from-color;
     font-weight: bold;
   }
 
-  #pile-results td.checkbox {
-    width: 45px;
-    text-align: center;
+  #pile-results div.snippet {
+    margin-bottom: @mp-search-item-spacing;
+  }
+
+  #pile-results div.checkbox {
+    text-align: right;
     vertical-align: top;
   }
 

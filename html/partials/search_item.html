@@ -16,61 +16,61 @@
 %}{%    set msg_url = metadata.urls.thread
 %}{%  endif
 %}
-<tr id="pile-message-{{mid}}"
+<li id="pile-message-{{mid}}"
     class="result{% for tid in metadata.tag_tids %} in_{{result.data.tags[tid].slug}}{% endfor %}{% if metadata.flags.replied %} replied{% endif %}"
     data-state="normal"
-{%- if metadata.body and metadata.body.list and
+    data-mid="{{mid}}"
+  {%- if metadata.body and metadata.body.list and
        ('list:' + metadata.body.list) not in state.query_args.q %}
     data-context-hint="{{ _('View e-mail from this mailing list') }}"
     data-context-icon="groups"
     data-context-url="{{ U('/search/?q=list:', metadata.body.list) }}"
-{%- else %}
-  {%- if from and from.address and
+    {%- else %}
+    {%- if from and from.address and
          ('from:' + from.address) not in state.query_args.q %}
     data-context-hint="{{ _('Search for e-mail from:') }} {{metadata.from.fn}}"
     data-context-icon="user"
     data-context-url="{{ U('/search/?q=from:', from.address) }}"
-  {%- endif %}
-{%- endif %}
-    data-mid="{{mid}}">
-  <td class="subject">
-    <div class="clearfix">
-      <a class="item-subject" title="{{metadata.body.snippet}}" href="{{msg_url}}">
-        {{ nice_subject(metadata) }} 
-        {% if metadata.crypto.encryption in ('decrypted', 'mixed-decrypted', 'lockedkey', 'mixed-lockedkey') %}
-        <span class="icon-lock-closed color-08-green"></span> 
-        {% elif metadata.crypto.encryption in ('error', 'mixed-error', 'missingkey', 'mixed-missingkey') %}
-        <span class="icon-lock-closed color-12-red"></span> 
-        {% endif %}
-        {% if metadata.flags.replied %}<span class="icon-reply"></span>{% endif %}
-        {% if metadata.flags.forwarded %}<span class="icon-forward"></span>{% endif %}
-        {% if conversation_count > 1 %}<span class="conversation-count">{{conversation_count}}</span>{% endif %}
-      </a>
-    </div>
-    <div class="clearfix">
-      <div class="left from">
-        <a href="/search/?q=from:{{from.address}}" title="{{metadata.from.fn}} &lt;{{from.address}}&gt;">
-          <span class="icon-user"></span> 
-          {% if metadata.from.fn %}{{ metadata.from.fn }}{% else %}({{_("No Name")}}){% endif %}
-        </a> 
-        <em>on {{metadata.timestamp|friendly_datetime}}</em>
-      </div>
-      <div class="item-tags right">
-      {% if has_label_tags(result.data.tags, metadata.tag_tids) %}
-      {% for tid in metadata.tag_tids %}
-        {% set tag = result.data.tags[tid] %}
-        {% if tag.label and not tag.searched %}
-        <span class="pile-message-tag color-{{tag.label_color}}" id="pile-message-tag-{{tag.tid}}-{{mid}}" data-tid="{{tag.tid}}" data-mid="{{mid}}">
-          <span class="pile-message-tag-icon {{tag.icon}}"></span>
-          <span class="pile-message-tag-name">{{tag.name}}</span>
-        </span>
-        {% endif %}
-      {% endfor %}
+    {%- endif %}
+  {%- endif %}>
+  <div class="clearfix">
+    <a class="subject left" title="{{metadata.body.snippet}}" href="{{msg_url}}">
+      {{ nice_subject(metadata) }} 
+      {% if metadata.crypto.encryption != "none" %}
+      <span class="icon-lock-closed {{metadata.crypto.encryption}}"></span> 
       {% endif %}
-      </div>
+      <span class="icon-new"></span>
+      {% if metadata.flags.replied %}<span class="icon-reply"></span>{% endif %}
+      {% if metadata.flags.forwarded %}<span class="icon-forward"></span>{% endif %}
+      {% if conversation_count > 1 %}<span class="conversation-count">{{conversation_count}}</span>{% endif %}
+    </a>
+    <div class="checkbox right">
+      <input type="checkbox" name="mid" value="{{mid}}">
     </div>
-  </td>
-  <td class="checkbox">
-    <input type="checkbox" name="mid" value="{{mid}}">
-  </td>
-</tr>
+  </div>
+  <div class="snippet">
+    {{metadata.body.snippet}}
+  </div>
+  <div class="clearfix">
+    <div class="from left">
+      <a class="from" href="/search/?q=from:{{from.address}}" title="{{from.address}}">
+        <span class="icon-user"></span> 
+        {% if metadata.from.fn %}{{ metadata.from.fn }}{% else %}({{_("No Name")}}){% endif %}
+      </a> 
+      <em>on {{metadata.timestamp|friendly_datetime}}</em>
+    </div>
+    <div class="tags right">
+    {% if has_label_tags(result.data.tags, metadata.tag_tids) %}
+    {% for tid in metadata.tag_tids %}
+      {% set tag = result.data.tags[tid] %}
+      {% if tag.label and not tag.searched %}
+      <span class="pile-message-tag color-{{tag.label_color}}" id="pile-message-tag-{{tag.tid}}-{{mid}}" data-tid="{{tag.tid}}" data-mid="{{mid}}">
+        <span class="pile-message-tag-icon {{tag.icon}}"></span>
+        <span class="pile-message-tag-name">{{tag.name}}</span>
+      </span>
+      {% endif %}
+    {% endfor %}
+    {% endif %}
+    </div>
+  </div>
+</li>

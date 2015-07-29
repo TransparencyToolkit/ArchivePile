@@ -82,13 +82,11 @@
   </div>
   <div id="content-view">
 
-    <table id="pile-results" class="{{ config.web.display_density }}">
-    <tbody>
+    <ol id="pile-results" class="{{ config.web.display_density }}">
     {% for mid in result.thread_ids %}
       {% include("partials/search_item.html") %}
     {% endfor %}
-    </tbody>
-    </table>
+    </ol>
   
     {% if result.stats.total > 0 %}
     <div class="clearfix">
