@@ -6,8 +6,140 @@
 
   <h1><span class="icon-help"></span> {{_("Help")}}</h1>
 
-  <h3>{{_("Custom Searches")}}</h3>
-  <p>{{_("Underneath the hood Mailpile is a high performance search engine that can answer complex questions.")}}</p>
+  <h3>{{_("Search Queries")}}</h3>
+
+  <p>Underneath the hood of Mailpile is a powerful search query engine that you can feed all sorts of custom queries to narrow or expand your search! These commands can be typed into the web GUI search box or into the command line interface (CLI). If you are typing them in the CLI they are args for the <code>search</code> command.</p>
+
+  <h3>Tags</h3>
+  <table>
+  <thead>
+  <tr>
+  <th>Query</th>
+  <th>Description</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+  <td>in:tag</td>
+  <td>messages with a given tag assigned</td>
+  </tr>
+  <tr>
+  <td>-in:tag</td>
+  <td>omits messages with a given tag assigned</td>
+  </tr>
+  </tbody>
+  </table>
+  <hr>
+  
+  <h3>Email Addresses</h3>
+  <table>
+  <thead>
+  <tr>
+  <th>Query</th>
+  <th>Description</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+  <td>from:<a href="mailto:name@address.com">name@address.com</a>
+  </td>
+  <td>messages sent from a given address</td>
+  </tr>
+  <tr>
+  <td>to:<a href="mailto:name@address.com">name@address.com</a>
+  </td>
+  <td>messages sent to a given address</td>
+  </tr>
+  <tr>
+  <td>contacts:<a href="mailto:name@address.com">name@address.com</a>
+  </td>
+  <td>messages either from or to address</td>
+  </tr>
+  </tbody>
+  </table>
+  <hr>
+  
+  <h3>Mailboxes</h3>
+  <table>
+  <thead>
+  <tr>
+  <th>Query</th>
+  <th>Description</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+  <td>mailbox:name</td>
+  <td>messages from one or more mailboxes which match name</td>
+  </tr>
+  <tr>
+  <td>mailbox:boxid</td>
+  <td>messages from only the specified mailbox id</td>
+  </tr>
+  </tbody>
+  </table>
+  <hr>  
+
+  <h3>Date</h3>
+  <table>
+  <thead>
+  <tr>
+  <th>Query</th>
+  <th>Description</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+  <td>dates:2011..2012</td>
+  <td>messages between a range of years</td>
+  </tr>
+  <tr>
+  <td>dates:2011-06..2011-07</td>
+  <td>messages between range of years and months</td>
+  </tr>
+  <tr>
+  <td>date:2011-06-11</td>
+  <td>messages from exact date (can add +date values)</td>
+  </tr>
+  <tr>
+  <td>year:2001</td>
+  <td>messages from specified year</td>
+  </tr>
+  <tr>
+  <td>month:8</td>
+  <td>messages from specified month</td>
+  </tr>
+  </tbody>
+  </table>
+  <hr>  
+
+  <h3>Various</h3>
+  <table>
+  <thead>
+  <tr>
+  <th>Query</th>
+  <th>Description</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+  <td>subject:keyword</td>
+  <td>messages with keyword in subject only</td>
+  </tr>
+  <tr>
+  <td>att:jpg</td>
+  <td>messages with attachments of file type "jpg"</td>
+  </tr>
+  <tr>
+  <td>has:attachment</td>
+  <td>messages with one or more attachments</td>
+  </tr>
+  <tr>
+  <td>has:crypto</td>
+  <td>messages that are encrypted and/or signed</td>
+  </tr>
+  </tbody>
+  </table>
 
 </div>
 
