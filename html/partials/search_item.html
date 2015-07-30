@@ -35,11 +35,11 @@
   {%- endif %}>
   <div class="clearfix" data-mid="{{mid}}">
     <a class="subject left" title="{{metadata.body.snippet}}" href="{{msg_url}}">
+      <span class="icon-new"></span>
       {{ nice_subject(metadata) }} 
       {% if metadata.crypto.encryption != "none" %}
       <span class="icon-lock-closed {{metadata.crypto.encryption}}"></span> 
       {% endif %}
-      <span class="icon-new"></span>
       {% if metadata.flags.replied %}<span class="icon-reply"></span>{% endif %}
       {% if metadata.flags.forwarded %}<span class="icon-forward"></span>{% endif %}
       {% if conversation_count > 1 %}<span class="conversation-count">{{conversation_count}}</span>{% endif %}
@@ -49,7 +49,7 @@
     </div>
   </div>
   <div class="snippet">
-    {{metadata.body.snippet}}
+    {{metadata.body.snippet}}...
   </div>
   <div class="clearfix">
     <div class="from left">
