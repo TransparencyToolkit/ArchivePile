@@ -440,6 +440,9 @@
   color: #000000;
 }
 /* Mimetype - icons */
+.icon-mime[type="application/mbox"]:before {
+  content: "\e635";
+}
 .icon-mime[type="application/octet-stream"]:before,
 .icon-mime[type="application/mac-binhex40"]:before,
 .icon-mime[type="application/x-shockwave-flash"]:before,
@@ -5474,7 +5477,7 @@ tr.modal-tag-picker-item td.checkbox {
 #pile-results li.result-on:hover {
   background: #f8f3b9;
 }
-#pile-results span.pile-message-tag {
+#pile-results span.pile-message-detail {
   font-weight: bold;
   margin-right: 5px;
   cursor: pointer;
@@ -6111,6 +6114,11 @@ a.modal-tag-color-option:hover {
   font-family: Helvetica, Arial, sans-serif;
   line-height: 18px;
   color: #666666;
+}
+.qtip-thread-crypto p.details {
+  background: #eeeeee;
+  border-radius: 3px;
+  padding: 7.5px;
 }
 .qtip-thread-crypto .qtip-icon {
   border: 2px solid #285589;
