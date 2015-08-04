@@ -8,9 +8,6 @@
   <p>{{ crypto.message }}</p>
   <p>
   {%- if failed_crypto.status in ("missingkey", "error") %}
-    <button class="message-crypto-action" data-mid="{{mid}}">
-      <span class="icon-key"></span> {{_("Send Your Encryption Key")}}
-    </button>
   {%- else %}
     {% if state.query_args.ui_key_auth %}
       <p><b><i>{{_("Password incorrect?  Try again!")}}</i></b></p>
@@ -23,9 +20,4 @@
     </a>
   {%- endif %}
   </p>
-{#### FIXME: hiding this in Beta Freeze
-  {% if part.crypto.encryption.missing_keys %}
-  <a href="#" class="message-crypto-investigate" data-mid="{{mid}}" data-part="{{ loop.index - 1 }}">{{_("Investigate Message Further")}}</a>
-  {% endif %}
-####}
 </div>
