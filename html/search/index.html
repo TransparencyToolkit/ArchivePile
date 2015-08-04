@@ -2,7 +2,6 @@
 
 {% block content %}
 {% if result %}
-
   <div class="clearfix">
     {% for t in result.search_terms %}
     <div class="content-detail left">
@@ -14,7 +13,7 @@
       {% else %}
         {{t}}
       {% endif %}
-      <a href="" class="remove">X</a>
+      <a href="/search/?q={% for r in result.search_terms %}{% if r != t %}{{ r }}+{% endif %}{% endfor %}" class="remove">X</a>
     </div>
     {% endfor %}
     <div class="content-detail right remove-right">
