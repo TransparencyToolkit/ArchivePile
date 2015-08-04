@@ -1,13 +1,47 @@
 /* Search - Tooltips */
 
 Mailpile.Search.Tooltips.MessageTags = function() {
-  $('.pile-message-tag').qtip({
+  $('.pile-message-detail').qtip({
     content: {
       title: false,
       text: function(event, api) {
-        var tooltip_data = _.findWhere(Mailpile.instance.tags, { tid: $(this).data('tid').toString() });              
-        tooltip_data['mid'] = $(this).data('mid');
-        var tooltip_template = _.template($('#tooltip-pile-tag-details').html());
+
+        console.log(Mailpile.instance.search_terms.join('+'));
+
+        var tooltip_data = {
+          mid: $(this).data('mid'),
+          current_search: Mailpile.instance.search_terms,
+          in_search: false
+        }
+
+        // Is Tag
+        if ($(this).data('type') == 'tag') {
+
+          var tag = _.findWhere(Mailpile.instance.tags, { tid: $(this).data('tid').toString() });
+          _.extend(tooltip_data, tag);
+          tooltip_data.type = 'tag';
+
+          if (_.indexOf(Mailpile.instance.search_terms, 'in:' + tag.slug) > -1) {
+            tooltip_data.in_search = true;
+            tooltip_data.current_search = _.without(Mailpile.instance.search_terms, 'in:' + tag.slug);
+          }
+
+        } else if ($(this).data('type') == 'contact') {
+
+          var contact = _.findWhere(Mailpile.instance.addresses, { address: $(this).data('address') });
+          _.extend(tooltip_data, contact);
+          tooltip_data.type = 'contact';
+
+          if (_.indexOf(Mailpile.instance.search_terms, 'from:' + $(this).data('address')) > -1) {
+            tooltip_data.in_search = true;
+            tooltip_data.current_search = _.without(Mailpile.instance.search_terms, 'from:' + $(this).data('address'));
+          } else if (_.indexOf(Mailpile.instance.search_terms, 'to:' + $(this).data('address')) > -1) {
+            tooltip_data.in_search = true;
+            tooltip_data.current_search = _.without(Mailpile.instance.search_terms, 'to:' + $(this).data('address'));
+          }
+        }
+
+        var tooltip_template = _.template($('#tooltip-pile-details').html());
         return tooltip_template(tooltip_data);
       }
     },
@@ -35,7 +69,7 @@ Mailpile.Search.Tooltips.MessageTags = function() {
     },
     hide: {
       event: false,
-      inactive: 700
+      inactive: 1500
     }
   });
 };

@@ -8,7 +8,7 @@
       {% set tag_check = t.split('in:') %}
       {% if tag_check|length > 1 and result.data %}
         {% for tid, tag in result.data.tags.iteritems() if tag.slug == tag_check[1] %}
-        <span class="{{tag.icon}}"></span> {{tag.name}}
+        <span class="color-{{tag.label_color}}"><span class="{{tag.icon}}"></span> {{tag.name}}</span>
         {% endfor %}
       {% else %}
         {{t}}

@@ -53,7 +53,9 @@
   </div>
   <div class="clearfix">
     <div class="from left">
-      <a class="from" href="/search/?q=from:{{from.address}}" title="{{from.address}}">
+      <a class="from pile-message-detail" 
+          data-type="contact"
+          data-address="{{from.address}}">
         <span class="icon-user"></span> 
         {% if metadata.from.fn %}{{ metadata.from.fn }}{% else %}({{_("No Name")}}){% endif %}
       </a> 
@@ -63,8 +65,12 @@
     {% if has_label_tags(result.data.tags, metadata.tag_tids) %}
     {% for tid in metadata.tag_tids %}
       {% set tag = result.data.tags[tid] %}
-      {% if tag.label and not tag.searched %}
-      <span class="pile-message-tag color-{{tag.label_color}}" id="pile-message-tag-{{tag.tid}}-{{mid}}" data-tid="{{tag.tid}}" data-mid="{{mid}}">
+      {% if tag.label %}
+      <span class="pile-message-detail color-{{tag.label_color}}"
+            id="pile-message-tag-{{tag.tid}}-{{mid}}"
+            data-type="tag"
+            data-tid="{{tag.tid}}"
+            data-mid="{{mid}}">
         <span class="pile-message-tag-icon {{tag.icon}}"></span>
         <span class="pile-message-tag-name">{{tag.name}}</span>
       </span>
