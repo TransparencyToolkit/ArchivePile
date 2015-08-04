@@ -14,7 +14,8 @@
 {% else %}
 {% set tag_new_count = tag.stats.new %}
 {% endif %}
-  <a href="{{tag.url}}" class="sidebar-tag
+  <a href="/search/?q=in:{{tag.slug}}{% for t in result.search_terms %}+{{ t }}{% endfor %}"
+    class="sidebar-tag
     {% if tag_new_count %}has-unread{% endif %}
     {{ navigation_on(result.search_tag_ids, tag.tid) }}
     {% if tag.get("subtags") %}has-subtags{% endif %}" title="{{tag.name}} {{friendly_number(tag_new_count)}}" data-tid="{{tag.tid}}">
@@ -49,13 +50,17 @@
       <div class="detail-heading">Select Filter Categories</div>
       <ul id="sidebar-priority" class="sidebar-sortable">
         {%- for tag in mailpile("tags", "mode=tree", "display=priority").result.tags -%}
+        {% if "in:" + tag.slug not in result.search_terms %}
         {{ render_sidebar_tag(tag) }}
+        {% endif %}
         {%- endfor -%}
       </ul>
       <div class="detail-heading">Unorganized Terms</div>
       <ul id="sidebar-tag" class="sidebar-sortable">
         {%- for tag in mailpile("tags", "mode=tree", "display=tag").result.tags -%}
+        {% if "in:" + tag.slug not in result.search_terms %}
         {{ render_sidebar_tag(tag) }}
+        {% endif %}
         {%- endfor -%}
       </ul>
     </nav>
