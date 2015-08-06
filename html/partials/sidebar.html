@@ -30,7 +30,7 @@
   <ul id="sidebar-subtags-{{tag.tid}}" class="sidebar-subtags {% if tag.tid in config.web.subtags_collapsed %}hide{% endif %}">
     {% for subtag in tag.subtags %}
     <li id="sidebar-tag-{{subtag.tid}}" data-tid="{{subtag.tid}}" data-display_order="{{subtag.display_order}}" class="sidebar-subtag sidebar-tags-draggable subtag-of-{{tag.tid}}">
-      <a href="{{subtag.url}}" class="sidebar-tag {% if subtag.stats.new %}has-unread{% endif %} {{ navigation_on(result.search_tag_ids, subtag.tid) }}" title="{{subtag.name}} {{subtag.stats.all}}" data-tid="{{subtag.tid}}">
+      <a href="/search/?q=in:{{subtag.slug}}{% for st in result.search_terms %}+{{ st }}{% endfor %}" class="sidebar-tag {% if subtag.stats.new %}has-unread{% endif %} {{ navigation_on(result.search_tag_ids, subtag.tid) }}" title="{{subtag.name}} {{subtag.stats.all}}" data-tid="{{subtag.tid}}">
         <span class="icon {{subtag.icon}}"></span>
         <span class="name">{{subtag.name}}</span>
         {% if subtag.stats.new %}
