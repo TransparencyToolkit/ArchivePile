@@ -4307,14 +4307,18 @@ div.content-detail {
   display: inline-block;
   background: #ffffff;
   margin: 0px 25px 20px 0px;
-  padding: 10px 15px;
+  padding: 10px 12px;
   font-family: 'SourceSansPro-Bold';
   font-size: 16px;
   line-height: 16px;
 }
 div.content-detail a.remove {
-  color: #c61c1c;
+  margin-left: 5px;
+  color: #8f8f8f;
   font-size: 16.8px;
+}
+div.content-detail a.remove:hover {
+  color: #c61c1c;
 }
 /* Misc */
 .detail-heading {
@@ -4984,7 +4988,7 @@ div.notification-bubble a.notification-close:hover {
   border-radius: 3px;
 }
 .topbar-nav > ul > li.navigation-on > a {
-  color: #666666;
+  color: #ffffff;
   cursor: default;
 }
 .topbar-nav > ul > li.navigation-on.nav-dropdown > a:hover {

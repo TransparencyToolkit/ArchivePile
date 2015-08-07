@@ -48,7 +48,7 @@
      "addresses": {% if result.data and result.data.addresses %}{{ addresses_json|safe }}{% else %}{}{% endif %},
      "messages": {% if result.data and result.data.messages %}{{ messages_json|safe }}{% else %}{}{% endif %},
      "metadata": {% if result.data and result.data.metadata %}{{ metadata_json|safe }}{% else %}{}{% endif %},
-     "search_terms": {% if result and result.search_terms %}{{ search_terms_json|safe }}{% endif %},
+     "search_terms": "{% if result and result.search_terms %}{{ search_terms_json|safe }}{% endif %}",
      "search_tag_ids": {% if result.search_tag_ids %}{{result.search_tag_ids|safe }}{% else %}[]{% endif %},
      "search_addresses": [],
      "tags": {{ tags_json|safe }}
