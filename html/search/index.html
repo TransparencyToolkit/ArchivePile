@@ -6,14 +6,19 @@
     {% for t in result.search_terms %}
     <div class="content-detail left">
       {% set tag_check = t.split('in:') %}
+      {% set from_check = t.split('from:') %}
       {% if tag_check|length > 1 and result.data %}
         {% for tid, tag in result.data.tags.iteritems() if tag.slug == tag_check[1] %}
         <span class="color-{{tag.label_color}}"><span class="{{tag.icon}}"></span> {{tag.name}}</span>
         {% endfor %}
+      {% elif from_check|length > 1 and result.data %}
+        <span class="color-"><span class="icon-user"></span> {{from_check[1]}}</span>
       {% else %}
         {{t}}
       {% endif %}
-      <a href="/search/?q={% for r in result.search_terms %}{% if r != t %}{{ r }}+{% endif %}{% endfor %}" class="remove">X</a>
+      <a href="/search/?q={% for r in result.search_terms %}{% if r != t %}{{ r }}+{% endif %}{% endfor %}" class="remove">
+        <span class="icon-circle-x"></span>
+      </a>
     </div>
     {% endfor %}
     <div class="content-detail right remove-right">

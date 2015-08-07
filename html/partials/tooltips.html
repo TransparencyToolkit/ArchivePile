@@ -5,17 +5,15 @@
     <h4 class="text-center" style="color: <%= Mailpile.theme.colors[label_color] %> "><span class=" <%= icon %> "></span> <%= name %></h4>
     <p><a href="<%= url %>" data-mid="<%= mid %>"><span class="icon-search"></span> Start New Search</a></p>
     <% if (in_search) { %>
-    <p><a href="<%= url %>" data-mid="<%= mid %>"><span class="icon-x"></span> Remove From Current Search</a></p>
+    <p><a href="/search/?q=<%= current_search.join('+') %>" data-mid="<%= mid %>"><span class="icon-x"></span> Remove From Current Search</a></p>
     <% } else { %>
-    <p><a href="/search/?q=in:<%= url %>" data-mid="<%= mid %>"><span class="icon-plus"></span> Add To Current Search</a></p>
+    <p><a href="/search/?q=in:<%= slug %>+<%= current_search.join('+') %>" data-mid="<%= mid %>"><span class="icon-plus"></span> Add To Current Search</a></p>
     <% } %>
 
   <% } else if (type == 'contact') { %>
     <h4 class="text-center"><span class="icon-user"></span> <%= fn %></h4>
     <% if (address != fn) { %><p class="details"><%= address %></p><% } %>
-
     <p><a href="/search/?q=from:<%= address %>" data-mid="<%= mid %>"><span class="icon-search"></span> Start New Search</a></p>
-
     <% if (in_search) { %>
     <p><a href="/search/?q=<%= current_search.join('+') %>" data-mid="<%= mid %>"><span class="icon-links"></span> Remove From Current Search</a></p>
     <% } else { %>
