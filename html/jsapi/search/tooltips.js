@@ -6,8 +6,6 @@ Mailpile.Search.Tooltips.MessageTags = function() {
       title: false,
       text: function(event, api) {
 
-        console.log(Mailpile.instance.search_terms.join('+'));
-
         var tooltip_data = {
           mid: $(this).data('mid'),
           current_search: Mailpile.instance.search_terms,

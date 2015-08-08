@@ -11,7 +11,7 @@
     <% } %>
 
   <% } else if (type == 'contact') { %>
-    <h4 class="text-center"><span class="icon-user"></span> <%= fn %></h4>
+    <% if (fn) { %><h4 class="text-center"><span class="icon-user"></span> <%= fn %></h4><% } %>
     <% if (address != fn) { %><p class="details"><%= address %></p><% } %>
     <p><a href="/search/?q=from:<%= address %>" data-mid="<%= mid %>"><span class="icon-search"></span> Start New Search</a></p>
     <% if (in_search) { %>
