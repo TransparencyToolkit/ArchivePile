@@ -25,13 +25,15 @@
 	#pile-results li.result-on       { background: @colorSelect }
 	#pile-results li.result-on:hover { background: @colorSelectHover }
 
-  #pile-results span.pile-message-detail {
+  #pile-results li.result span.pile-message-detail,
+  #pile-results li.result-on span.pile-message-detail {
     font-weight: bold;
     margin-right: 5px;
     cursor: pointer;
   }
 
-  #pile-results span.conversation-count {
+  #pile-results li.result span.conversation-count,
+  #pile-results li.result-on span.conversation-count {
     text-align: center;
     vertical-align: middle;
     position: relative;
@@ -47,9 +49,35 @@
     line-height: 11px;
   }
 
+  #pile-results li.result a.subject span.icon-new,
+  #pile-results li.result-on a.subject span.icon-new {
+    display: none;
+  }
 
-/* Pile - Icons */
-  
+  #pile-results li.result.in_new span.icon-new {
+    color: @blue;
+    display: inline-block;
+  }
+
+
+/* Pile - Subject & Text */
+	
+	#pile-results a.subject {
+    display: inline-block;
+    min-width: 325px;
+    width: 95%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+		word-wrap: break-word;
+    white-space: nowrap;
+    margin-bottom: 8px;
+    color: @mp-search-subject-color;
+    font-size: @mp-search-subject-font-size;
+    font-family: @mp-search-subject-font;
+    line-height: @mp-search-subject-font-size * 1.25;
+    vertical-align: text-top;
+	}
+
   #pile-results a.subject span.icon-lock-closed,
 	#pile-results a.subject span.icon-new,
 	#pile-results a.subject span.icon-reply,
@@ -72,34 +100,6 @@
   #pile-results a.subject span.icon-lock-closed.mixed-missingkey {
     color: @red;
   }
-
-  #pile-results li.result span.icon-new,
-  #pile-results li.result-on span.icon-new {
-    display: none;
-  }
-
-  #pile-results li.result.in_new span.icon-new {
-    color: @blue;
-    display: inline-block;
-  }
-
-
-/* Pile - Subject & Text */
-	
-	#pile-results a.subject {
-    min-width: 374px;
-    max-width: 500px;
-    text-overflow: ellipsis;
-		word-wrap: normal;
-		word-break: normal;
-    white-space: nowrap;
-    margin-bottom: 8px;
-    color: @mp-search-subject-color;
-    font-size: @mp-search-subject-font-size;
-    font-family: @mp-search-subject-font;
-    line-height: @mp-search-subject-font-size * 1.25;
-    vertical-align: text-top;
-	}
 
   #pile-results div.from,
   #pile-results div.from em {
