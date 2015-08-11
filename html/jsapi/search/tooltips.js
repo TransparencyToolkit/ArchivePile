@@ -6,9 +6,10 @@ Mailpile.Search.Tooltips.MessageTags = function() {
       title: false,
       text: function(event, api) {
 
+        var search_terms = _.without(Mailpile.instance.search_terms, 'all:mail');
         var tooltip_data = {
           mid: $(this).data('mid'),
-          current_search: Mailpile.instance.search_terms,
+          current_search: search_terms,
           in_search: false
         }
 
@@ -21,7 +22,7 @@ Mailpile.Search.Tooltips.MessageTags = function() {
 
           if (_.indexOf(Mailpile.instance.search_terms, 'in:' + tag.slug) > -1) {
             tooltip_data.in_search = true;
-            tooltip_data.current_search = _.without(Mailpile.instance.search_terms, 'in:' + tag.slug);
+            tooltip_data.current_search = _.without(search_terms, 'in:' + tag.slug);
           }
 
         } else if ($(this).data('type') == 'contact') {
@@ -32,10 +33,10 @@ Mailpile.Search.Tooltips.MessageTags = function() {
 
           if (_.indexOf(Mailpile.instance.search_terms, 'from:' + $(this).data('address')) > -1) {
             tooltip_data.in_search = true;
-            tooltip_data.current_search = _.without(Mailpile.instance.search_terms, 'from:' + $(this).data('address'));
+            tooltip_data.current_search = _.without(search_terms, 'from:' + $(this).data('address'));
           } else if (_.indexOf(Mailpile.instance.search_terms, 'to:' + $(this).data('address')) > -1) {
             tooltip_data.in_search = true;
-            tooltip_data.current_search = _.without(Mailpile.instance.search_terms, 'to:' + $(this).data('address'));
+            tooltip_data.current_search = _.without(search_terms, 'to:' + $(this).data('address'));
           }
         }
 

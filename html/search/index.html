@@ -3,7 +3,12 @@
 {% block content %}
 {% if result %}
   <div class="clearfix">
-    {% for t in result.search_terms %}
+    {% if result.search_terms|length == 1 and "all:mail" in result.search_terms %}
+    <div class="content-detail left">
+    All Messages
+    </div>
+    {% else %}
+    {% for t in result.search_terms if t != "all:mail" %}
     <div class="content-detail left">
       {% set tag_check = t.split('in:') %}
       {% set from_check = t.split('from:') %}
@@ -21,6 +26,7 @@
       </a>
     </div>
     {% endfor %}
+    {% endif %}
     <div class="content-detail right remove-right">
       {% if result.stats.total > 1 %}
         {{result.stats.start}} - {{result.stats.end}} {{_("of")}} {{result.stats.total}} {{_("Conversations")}}

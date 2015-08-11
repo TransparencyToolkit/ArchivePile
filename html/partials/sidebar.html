@@ -49,8 +49,8 @@
     <nav>
       <div class="detail-heading">Select Filter Categories</div>
       <ul id="sidebar-priority" class="sidebar-sortable">
-        {%- for tag in mailpile("tags", "mode=tree", "display=priority").result.tags -%}
-        {% if "in:" + tag.slug not in result.search_terms %}
+        {%- for tag in mailpile("tags", "mode=tree", "display=priority").result.tags if tag.search_terms != "all:mail" %}
+        {% if "in:" + tag.slug not in result.search_terms and tag.search_terms != "all:mail" %}
         {{ render_sidebar_tag(tag) }}
         {% endif %}
         {%- endfor -%}
@@ -58,7 +58,7 @@
       <div class="detail-heading">Unorganized Terms</div>
       <ul id="sidebar-tag" class="sidebar-sortable">
         {%- for tag in mailpile("tags", "mode=tree", "display=tag").result.tags -%}
-        {% if "in:" + tag.slug not in result.search_terms %}
+        {% if "in:" + tag.slug not in result.search_terms and tag.search_terms != "all:mail" %}
         {{ render_sidebar_tag(tag) }}
         {% endif %}
         {%- endfor -%}
