@@ -33,17 +33,19 @@
     data-context-url="{{ U('/search/?q=from:', from.address) }}"
     {%- endif %}
   {%- endif %}>
-  <div class="clearfix" data-mid="{{mid}}">
+  <div class="top clearfix" data-mid="{{mid}}">
     <a class="subject left" title="{{metadata.body.snippet}}" href="{{msg_url}}">
-      <span class="icon-new"></span>
-      {{ nice_subject(metadata) }} 
+    <span class="icon-new left"></span>
+
+      {{ nice_subject(metadata) }}
+    </a>
       {% if metadata.crypto.encryption != "none" %}
       <span class="icon-lock-closed {{metadata.crypto.encryption}}"></span> 
       {% endif %}
       {% if metadata.flags.replied %}<span class="icon-reply"></span>{% endif %}
       {% if metadata.flags.forwarded %}<span class="icon-forward"></span>{% endif %}
       {% if conversation_count > 1 %}<span class="conversation-count">{{conversation_count}}</span>{% endif %}
-    </a>
+
     <div class="checkbox right">
       <input type="checkbox" name="mid" value="{{mid}}" data-mid="{{mid}}">
     </div>

@@ -91,14 +91,13 @@
     {% include('partials/tools_default.html') %}
   </div>
   <div id="content-view">
-
+  
+    {% if result.stats.total > 0 %}
     <ol id="pile-results" class="{{ config.web.display_density }}">
     {% for mid in result.thread_ids %}
       {% include("partials/search_item.html") %}
     {% endfor %}
     </ol>
-  
-    {% if result.stats.total > 0 %}
     <div class="clearfix">
     <div id="pile-bottom" class="left">
       {% set searchterms = result.search_terms|join(' ') %}
@@ -120,11 +119,9 @@
     {% else %}
     <div id="pile-empty" class="clearfix add-bottom text-center">
       <h3 class="add-top">{{_("No Results Found")}} :)</h3>
-      <p>{{_("It seems your Mailpile does not contain any messages, tags or contacts for the search")}}:</p>
+      <p>{{_("Mailpile does not contain any messages for your search")}}:</p>
       <p id="pile-empty-search-terms">"{% for term in result.search_terms %}{{term}}{% if not loop.last %} {% endif %}{% endfor %}"</p>
-      <p>{{_("Here are some other options for you")}}:</p>
       <p><a href="{{ config.sys.http_path }}/help/" id="pile-empty-search-terms-help" class="button-primary"><span class="icon-help"></span> {{_("Learn To Search Smarter")}}</a></p>
-      <p class="add-bottom"><a href="#" id="btn-pile-empty-search-web" class="button-primary"><span class="icon-search"></span> {{_("Search The Web For People")}}</a></p>
     </div>
     {% endif %}
 

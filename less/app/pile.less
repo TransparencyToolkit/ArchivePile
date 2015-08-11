@@ -32,14 +32,71 @@
     cursor: pointer;
   }
 
-  #pile-results li.result span.conversation-count,
-  #pile-results li.result-on span.conversation-count {
+
+/* Pile - Subject & Text */
+	
+	#pile-results a.subject {
+    display: inline-block;
+    max-width: 88%;
+    margin-bottom: 6px;
+    margin-right: 5px;
+    color: @mp-search-subject-color;
+    font-size: @mp-search-subject-font-size;
+    font-family: @mp-search-subject-font;
+    line-height: @mp-search-subject-font-size * 1.25;
+    vertical-align: text-top;
+    display: inline-block;
+    overflow-x: hidden;
+		word-wrap: break-word;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+	}
+
+  #pile-results li.result div.top span.icon-new,
+  #pile-results li.result-on div.top span.icon-new {
+    display: none;
+  }
+
+  #pile-results li.result.in_new div.top span.icon-new {
+    color: @blue;
+    margin-right: 5px;
+    display: inline-block;
+    position: relative;
+    top: 3px;
+    left: 0px;
+  }
+
+  #pile-results div.top span.icon-lock-closed,
+	#pile-results div.top span.icon-new,
+	#pile-results div.top span.icon-reply,
+	#pile-results div.top span.icon-forward,
+  #pile-results div.top span.icon-compose {
+    vertical-align: middle;
+    color: @mp-search-from-color;
+    font-size: @mp-search-subject-font-size * .85;
+    margin-right: 3px;
+  }
+
+  #pile-results div.top span.icon-lock-closed.decrypted,
+  #pile-results div.top span.icon-lock-closed.mixed-decrypted,
+  #pile-results div.top span.icon-lock-closed.lockedkey,
+  #pile-results div.top span.icon-lock-closed.mixed-lockedkey {
+    color: @green;
+  }
+
+  #pile-results div.top span.icon-lock-closed.error,
+  #pile-results div.top span.icon-lock-closed.mixed-error,
+  #pile-results div.top span.icon-lock-closed.missingkey,
+  #pile-results div.top span.icon-lock-closed.mixed-missingkey {
+    color: @red;
+  }
+
+  #pile-results li.result div.top span.conversation-count,
+  #pile-results li.result-on div.top span.conversation-count {
+    display: inline-block;
     text-align: center;
     vertical-align: middle;
-    position: relative;
-    top: -2px;
-    left: 3px;
-    padding: 4px 8px 4px 8px;
+    padding: 4px 6px 4px 6px;
     box-sizing: border-box;
     color: @grayDark;
     background: @grayMid;
@@ -49,57 +106,8 @@
     line-height: 11px;
   }
 
-  #pile-results li.result a.subject span.icon-new,
-  #pile-results li.result-on a.subject span.icon-new {
-    display: none;
-  }
 
-  #pile-results li.result.in_new span.icon-new {
-    color: @blue;
-    display: inline-block;
-  }
-
-
-/* Pile - Subject & Text */
-	
-	#pile-results a.subject {
-    display: inline-block;
-    min-width: 325px;
-    max-width: 95%;
-    overflow-x: hidden;
-    text-overflow: ellipsis;
-		word-wrap: break-word;
-    white-space: nowrap;
-    margin-bottom: 8px;
-    color: @mp-search-subject-color;
-    font-size: @mp-search-subject-font-size;
-    font-family: @mp-search-subject-font;
-    line-height: @mp-search-subject-font-size * 1.25;
-    vertical-align: text-top;
-	}
-
-  #pile-results a.subject span.icon-lock-closed,
-	#pile-results a.subject span.icon-new,
-	#pile-results a.subject span.icon-reply,
-	#pile-results a.subject span.icon-forward,
-  #pile-results a.subject span.icon-compose {
-    color: @mp-search-from-color;
-    font-size: @mp-search-subject-font-size * .85;
-  }
-
-  #pile-results a.subject span.icon-lock-closed.decrypted,
-  #pile-results a.subject span.icon-lock-closed.mixed-decrypted,
-  #pile-results a.subject span.icon-lock-closed.lockedkey,
-  #pile-results a.subject span.icon-lock-closed.mixed-lockedkey {
-    color: @green;
-  }
-
-  #pile-results a.subject span.icon-lock-closed.error,
-  #pile-results a.subject span.icon-lock-closed.mixed-error,
-  #pile-results a.subject span.icon-lock-closed.missingkey,
-  #pile-results a.subject span.icon-lock-closed.mixed-missingkey {
-    color: @red;
-  }
+/* Pile - Misc */
 
   #pile-results div.from,
   #pile-results div.from em {
@@ -137,10 +145,12 @@
 	}
 
   #pile-empty {
-    padding: @base-padding;
+    min-height: 500px;
+    padding: @mp-search-item-spacing;
     background: @white;
     border-bottom: 1px solid @grayMid;
     font-size: 14px;
+    box-sizing: padding-box;
   }
 
   #pile-empty-search-terms {
