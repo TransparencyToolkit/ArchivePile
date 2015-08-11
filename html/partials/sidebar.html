@@ -27,7 +27,7 @@
     {% endif %}
   </a>
   {% if tag.subtags %}
-  <ul id="sidebar-subtags-{{tag.tid}}" class="sidebar-subtags {% if tag.tid in config.web.subtags_collapsed %}hide{% endif %}">
+  <ul id="sidebar-subtags-{{tag.tid}}" class="sidebar-subtags hide">
     {% for subtag in tag.subtags %}
     <li id="sidebar-tag-{{subtag.tid}}" data-tid="{{subtag.tid}}" data-display_order="{{subtag.display_order}}" class="sidebar-subtag sidebar-tags-draggable subtag-of-{{tag.tid}}">
       <a href="/search/?q=in:{{subtag.slug}}{% for st in result.search_terms %}+{{ st }}{% endfor %}" class="sidebar-tag {% if subtag.stats.new %}has-unread{% endif %} {{ navigation_on(result.search_tag_ids, subtag.tid) }}" title="{{subtag.name}} {{subtag.stats.all}}" data-tid="{{subtag.tid}}">
@@ -48,7 +48,7 @@
   <div id="sidebar-lists">
     <nav>
       <div class="detail-heading">Select Filter Categories</div>
-      <ul id="sidebar-priority" class="sidebar-sortable">
+      <ul id="sidebar-priority">
         {%- for tag in mailpile("tags", "mode=tree", "display=priority").result.tags if tag.search_terms != "all:mail" %}
         {% if "in:" + tag.slug not in result.search_terms and tag.search_terms != "all:mail" %}
         {{ render_sidebar_tag(tag) }}
@@ -56,7 +56,7 @@
         {%- endfor -%}
       </ul>
       <div class="detail-heading">Unorganized Terms</div>
-      <ul id="sidebar-tag" class="sidebar-sortable">
+      <ul id="sidebar-tag">
         {%- for tag in mailpile("tags", "mode=tree", "display=tag").result.tags -%}
         {% if "in:" + tag.slug not in result.search_terms and tag.search_terms != "all:mail" %}
         {{ render_sidebar_tag(tag) }}
