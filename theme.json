@@ -3,7 +3,8 @@
   "authors": ["Brennan Novak <hi@brennannovak.com>"],
   "title": "HT Email",
   "description": "",
-  "logo": "tt-logo.png",
+  "logo": "logo-57.png",
+  "favicon": "logo-32.png",
   "urls_primary": [{
       "name": "Help",
       "icon": "icon-help",

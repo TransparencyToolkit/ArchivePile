@@ -5,14 +5,9 @@
   <link rel="stylesheet" href="{{ U('/jsapi/as.css?ts=', config.version, '-', config.timestamp) }}" />
   {% endif %}
 
-  <!-- Apple Icons -->
-  <link rel="apple-touch-icon" sizes="57x57" href="{{ U('/static/img/apple-touch-icon.png') }}" />
-  <link rel="apple-touch-icon" sizes="72x72" href="{{ U('/static/img/apple-touch-icon-72x72.png') }}" />
-  <link rel="apple-touch-icon" sizes="114x114" href="{{ U('/static/img/apple-touch-icon-114x114.png') }}" />
-
   <!-- Favicon -->
-  <link rel="shortcut icon" id="basic-favicon" href="{{ U('/static/img/favicon.png') }}" />
-  <link rel="icon" id="basic-favicon" type="image/png" href="{{ U('/static/img/favicon.png') }}" />
+  <link rel="shortcut icon" id="basic-favicon" href="/static/img/{{theme_settings().favicon}}" />
+  <link rel="icon" id="basic-favicon" type="image/png" href="/static/img/{{theme_settings().favicon}}" />
 
   <!-- JS Global Libraries -->
   <script src="{{ U('/static/js/jquery.min.js') }}"></script>
@@ -48,7 +43,7 @@
      "addresses": {% if result.data and result.data.addresses %}{{ addresses_json|safe }}{% else %}{}{% endif %},
      "messages": {% if result.data and result.data.messages %}{{ messages_json|safe }}{% else %}{}{% endif %},
      "metadata": {% if result.data and result.data.metadata %}{{ metadata_json|safe }}{% else %}{}{% endif %},
-     "search_terms": {% if result and result.search_terms %}{{ search_terms_json|safe }}{% endif %},
+     "search_terms": {% if result and result.search_terms %}{{ search_terms_json|safe }}{% else %}[]{% endif %},
      "search_tag_ids": {% if result.search_tag_ids %}{{result.search_tag_ids|safe }}{% else %}[]{% endif %},
      "search_addresses": [],
      "tags": {{ tags_json|safe }}
