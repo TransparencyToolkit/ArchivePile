@@ -15,7 +15,8 @@ Currently, this theme is only suggested on Linux installs of Mailpile. The Windo
 
 1. Clone [the source code](https://github.com/mailpile/Mailpile) for Mailpile
 2. First [setup and configure](https://github.com/mailpile/Mailpile/wiki/Getting-started-on-linux) Mailpile
-2. Clone the [ArchivePile](https://github.com/TransparencyToolkit/ArchivePile) repository into `Mailpile/shared-data/` path
+3. Clone the [ArchivePile](https://github.com/TransparencyToolkit/ArchivePile) repository into `Mailpile/shared-data/` path
+4. Select theme via the Mailpile CLI `set sys.path.html_theme=/full/path/to/ArchivePile`
 
 ### Securing Your Instance
 
